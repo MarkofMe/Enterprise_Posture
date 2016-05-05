@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#282828"
-    tools:context="jollyroger.posture_app.NavigationDrawerFragment">
+    tools:context="jollyroger.enterprise_posture.NavigationDrawerFragment">
 
     <LinearLayout
         android:id="@+id/containerDrawerImage"

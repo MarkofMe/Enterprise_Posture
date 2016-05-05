@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import static jollyroger.posture_app.R.id.camera_toolbar;
+import static jollyroger.enterprise_posture.R.id.camera_toolbar;
 
 
 public class CameraActivity extends AppCompatActivity {

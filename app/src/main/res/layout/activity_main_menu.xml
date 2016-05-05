@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="jollyroger.posture_app.Main_Menu_Activity">
+        tools:context="jollyroger.enterprise_posture.Main_Menu_Activity">
 
         <include
             android:id="@+id/main_menu_toolbar"
@@ -51,7 +51,7 @@
 
     <fragment
         android:id="@+id/fragment_navigation_drawer"
-        android:name="jollyroger.posture_app.NavigationDrawerFragment"
+        android:name="jollyroger.enterprise_posture.NavigationDrawerFragment"
         android:layout_width="@dimen/nav_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"

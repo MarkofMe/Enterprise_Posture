@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0DEB1D"
-    tools:context="jollyroger.posture_app.DatabaseFragment">
+    tools:context="jollyroger.enterprise_posture.DatabaseFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

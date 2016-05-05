@@ -21,8 +21,8 @@ import android.view.ViewGroup;
 
 import tabs.SlidingTabLayout;
 
-import static jollyroger.posture_app.R.id.main_menu_toolbar;
-import static jollyroger.posture_app.R.layout.activity_main_menu;
+import static jollyroger.enterprise_posture.R.id.main_menu_toolbar;
+import static jollyroger.enterprise_posture.R.layout.activity_main_menu;
 
 public class Main_Menu_Activity extends AppCompatActivity {
 

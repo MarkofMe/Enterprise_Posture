@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import static jollyroger.posture_app.R.id.credits_toolbar;
+import static jollyroger.enterprise_posture.R.id.credits_toolbar;
 
 
 public class CreditsActivity extends AppCompatActivity {

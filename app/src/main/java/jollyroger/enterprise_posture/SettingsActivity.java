@@ -9,7 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import static jollyroger.posture_app.R.id.settings_toolbar;
+import static jollyroger.enterprise_posture.R.id.settings_toolbar;
 
 public class SettingsActivity extends AppCompatActivity {
 
