@@ -1,0 +1,10 @@
+
+Mark - 02/05/2016
+
+I've added this update file so we can document what updates we've made to the app.
+
+I've also added 4 new activities; PlotterActivity, DeciderActivity, AddToPatientActivity and CreatePatientActivity.
+I've also created layouts for each of these activities.
+
+I've added a button to the camera fragment that will link to the camera activity, a bigger screen is better for taking pictures and plotting small points on an image.
+I've also added the storyboard to the drawable folder so you can get an idea of the route the user will take through the app.

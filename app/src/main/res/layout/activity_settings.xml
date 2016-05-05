@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <include
+            android:id="@+id/settings_toolbar"
+            layout="@layout/app_bar" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20px"
+            android:layout_marginTop="200px"
+            android:text="Change Colour"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/blueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="20px"
+            android:layout_marginTop="300px"
+            android:background="@color/colorPrimary"
+            android:onClick="ChangeToBlue"
+            android:text="Blue"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/pinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="320px"
+            android:layout_marginTop="300px"
+            android:background="@color/my_pink"
+            android:onClick="ChangeToPink"
+            android:text="Pink"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/orangeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="620px"
+            android:layout_marginTop="300px"
+            android:background="@color/my_orange"
+            android:onClick="ChangeToOrange"
+            android:text="Orange"
+            android:textColor="#ffffff" />
+    </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

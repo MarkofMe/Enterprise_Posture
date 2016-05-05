@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Enterprise_Posture</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Posture Plus</string>
+    <string name="action_settings">Settings</string>
+    <string name="capturename">Capture</string>
+    <string name="Capture">Capture</string>
+    <string name="button2">previous data</string>
+    <string name="button3">Button 3</string>
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="Welcome">WELCOME</string>
+    <string name="logo_description">app icon</string>
+    <string name="jolly_roger_presents">Jolly Roger Presents</string>
+
+    <string-array name="tabs">
+        <item>Camera</item>
+        <item>Database</item>
+        <item>Settings</item>
+        <item>Credits</item>
+    </string-array>
 </resources>
