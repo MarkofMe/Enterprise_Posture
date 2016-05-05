@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Open Camera"
+        android:text="@string/open_camera"
         android:onClick="OpenCamera"
         android:textAppearance="?android:textAppearanceLarge" />
 

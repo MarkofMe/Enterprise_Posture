@@ -12,6 +12,9 @@
     <string name="Welcome">WELCOME</string>
     <string name="logo_description">app icon</string>
     <string name="jolly_roger_presents">Jolly Roger Presents</string>
+    <string name="welcome_to_the_database">Welcome To The Database</string>
+    <string name="dummy_text">Dummy Text</string>
+    <string name="open_camera">Open Camera</string>
 
     <string-array name="tabs">
         <item>Camera</item>

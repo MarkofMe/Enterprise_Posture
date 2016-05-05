@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Welcome To The Database"
+        android:text="@string/welcome_to_the_database"
         android:textAppearance="?android:textAppearanceLarge" />
 
 
