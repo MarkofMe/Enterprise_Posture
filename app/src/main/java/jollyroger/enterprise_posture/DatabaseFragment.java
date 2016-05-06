@@ -35,10 +35,10 @@ public class DatabaseFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_database, container, false);
 //
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
-////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
 ////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
 ////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
 ////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
