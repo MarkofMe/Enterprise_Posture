@@ -3,7 +3,7 @@ package database;
 import java.util.Date;
 
 
-class Patient {
+public class Patient {
 
     private int PatientID;
     private String FirstName;
