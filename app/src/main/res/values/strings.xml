@@ -15,6 +15,9 @@
     <string name="welcome_to_the_database">Welcome To The Database</string>
     <string name="dummy_text">Dummy Text</string>
     <string name="open_camera">Open Camera</string>
+    <string name="take_another_picture">Take another Picture</string>
+    <string name="add_to_new_patient">Add to New Patient</string>
+    <string name="add_to_existing_patient">Add to Existing Patient</string>
 
     <string-array name="tabs">
         <item>Camera</item>

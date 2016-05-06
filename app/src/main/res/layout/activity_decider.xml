@@ -22,6 +22,35 @@
         android:layout_height="match_parent">
 
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/take_another_picture"
+            android:id="@+id/take_another"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="TakeAnotherPicture"
+            android:layout_marginTop="200dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_to_new_patient"
+            android:id="@+id/add_new"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="AddToNewPatient"
+            android:layout_marginTop="300dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_to_existing_patient"
+            android:id="@+id/add_to"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:onClick="AddToExistingPatient"
+            android:layout_marginTop="400dp" />
     </RelativeLayout>
 
 
