@@ -2,6 +2,7 @@ package database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -34,6 +35,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String AP_PATIENTIMAGE = "PatientImage";
     private static final String AP_DIAGNOSTIC = "Diagnostic";
 
+    //private SQLiteDatabase db;
+
     //Constructor
     public DatabaseHandler(Context context) {
         super(context, Database_Name, null, 1);
@@ -53,23 +56,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_DOB
                 + " TEXT NOT NULL, "
                 + PT_GENDER
-                + " TEXT NOT NULL, " + ") ";
+                + " TEXT NOT NULL " + ")";
 
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
                 + "(" + AP_ID//Make sure that this isn't an issue
-                + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + AP_PATIENTID
-                + " TEXT NOT NULL , "
+                + " TEXT NOT NULL, "
                 + AP_APPOINTMENTNO
-                + " TEXT NOT NULL , "
+                + " TEXT NOT NULL, "
                 + AP_APPOINTMENTDATE
-                + " TEXT NOT NULL , "
+                + " TEXT NOT NULL, "
                 + AP_PATIENTIMAGE
-                + " TEXT NOT NULL , "
+                + " TEXT NOT NULL, "
                 + AP_DIAGNOSTIC
                 + " TEXT NOT NULL, "
-                + " FOREIGN KEY (" + AP_PATIENTID + ") REFERENCES " + Table_Patients + "(" + PT_ID + "));";
+                + " FOREIGN KEY(" + AP_PATIENTID + ")REFERENCES " + Table_Patients + "(" + PT_ID + "));";
         db.execSQL(CREATE_PATIENTS_TABLE);
         db.execSQL(CREATE_APPOINTMENTS_TABLE);
     }
@@ -82,14 +85,34 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public Cursor getPatientsTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery("SELECT * FROM Patients", null);
+    }
+
+
     // Adds data to the patients table
     public boolean insertDataPatients() {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PT_FIRSTNAME, patient.getFirstName());
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.insert(Table_Patients, null, values);
+        if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insertDataPatients(Patient p) {
+        ContentValues values = new ContentValues();
+        values.put(PT_FIRSTNAME, p.getFirstName());
+        values.put(PT_SURNAME, p.getSurName());
+        values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
+        values.put(PT_GENDER, p.getGender());
+        SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
             return false;
@@ -99,12 +122,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Adds data to the appointments table
     public boolean insertDataAppointments() {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate())); // because its a date variable
         values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
+        SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
             return false;
@@ -114,20 +137,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // Updates a field based on their ID
     public boolean updatePatients(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(PT_ID, patient.getPatientID());
         values.put(PT_FIRSTNAME, patient.getFirstName());
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
+        SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id}); //queries by finding the field based on id
         return true;
     }
 
     // Updates a field based on their ID
     public boolean updateAppointments(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AP_ID, appointment.getAppointmentID());
         values.put(AP_PATIENTID, appointment.getPatientID());
@@ -135,6 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate()));
         values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
+        SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id});//queries by finding the field based on id
         return true;
     }
