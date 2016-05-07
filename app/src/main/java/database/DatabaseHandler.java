@@ -86,7 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public Cursor getPatientsTable() {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM Patients", null);
     }
 

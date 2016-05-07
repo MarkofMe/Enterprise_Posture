@@ -33,30 +33,24 @@ public class DatabaseFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_database, container, false);
-
+//
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
-
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+////        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male"));
+//
         Cursor cursor = dbHandler.getPatientsTable();
-
+//
         ListView lv = (ListView) v.findViewById(R.id.listview_patients);
-
+//
         ListviewCursorAdapter lvAdapter = new ListviewCursorAdapter(getContext(), cursor);
         lv.setAdapter(lvAdapter);
 
-
-        while(cursor.moveToNext()){
-            String uname = cursor.getString(cursor.getColumnIndex("FirstName"));
-            Log.d(uname, uname);
-        }
-
-        return inflater.inflate(R.layout.fragment_database, container, false);
+        return v;
     }
 
 }

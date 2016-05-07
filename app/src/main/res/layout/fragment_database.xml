@@ -6,13 +6,11 @@
     tools:context="jollyroger.enterprise_posture.DatabaseFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
+
+
+    <ListView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/welcome_to_the_database"
-        android:textAppearance="?android:textAppearanceLarge" />
-
-
+        android:id="@+id/listview_patients"
+        android:layout_gravity="left|center_vertical" />
 </FrameLayout>

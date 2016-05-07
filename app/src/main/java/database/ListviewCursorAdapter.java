@@ -32,7 +32,7 @@ public class ListviewCursorAdapter extends CursorAdapter {
         TextView dob = (TextView) view.findViewById(R.id.dob);
 
         // Take properties from cursor
-        String strName = cursor.getString(cursor.getColumnIndexOrThrow("FirstName")) + cursor.getString(cursor.getColumnIndexOrThrow("surname"));
+        String strName = cursor.getString(cursor.getColumnIndexOrThrow("FirstName")) + cursor.getString(cursor.getColumnIndexOrThrow("Surname"));
         int intDob = cursor.getInt(cursor.getColumnIndexOrThrow("DoB"));
 
         // Populate fields with properties
