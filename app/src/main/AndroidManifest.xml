@@ -34,6 +34,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
+        <activity
+            android:name=".CreatePatientActivity"
+            android:label="Create Patient">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -45,7 +52,6 @@
 
         <activity android:name=".PlotterActivity" />
         <activity android:name=".DeciderActivity" />
-        <activity android:name=".CreatePatientActivity" />
         <activity android:name=".AddToPatientActivity" />
     </application>
 

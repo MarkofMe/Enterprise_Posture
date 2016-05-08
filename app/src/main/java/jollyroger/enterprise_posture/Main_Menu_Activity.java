@@ -145,18 +145,25 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
     public void ChangeToBlue(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+        findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_bg));
     }
 
     public void ChangeToPink(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_pink));
+        findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_pink));
     }
 
     public void ChangeToOrange(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_orange));
+        findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_orange));
     }
 
     public void OpenCamera(View view) {
         startActivity(new Intent(this, CameraActivity.class));
+    }
+
+    public void AddNewPatient(View view) {
+        startActivity(new Intent(this, CreatePatientActivity.class));
     }
 
 

@@ -15,7 +15,7 @@
 
         <shape>
 
-            <solid android:color="@color/colorPrimary" />
+            <solid android:color="@color/my_orange" />
 
         </shape>
 
