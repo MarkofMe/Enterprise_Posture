@@ -33,6 +33,12 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <uses-permission android:name="android.permisson.CAMERA" />
+                <uses-feature android:name="android.hardware.Camera" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".CreatePatientActivity"
