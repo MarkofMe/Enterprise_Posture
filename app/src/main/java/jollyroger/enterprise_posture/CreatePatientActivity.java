@@ -7,23 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Date;
 
-import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
-import static jollyroger.enterprise_posture.R.id.datePicker;
-import static jollyroger.enterprise_posture.R.id.firstNameInput;
-import static jollyroger.enterprise_posture.R.id.lastNameInput;
-
 import database.DatabaseHandler;
-import database.ListviewCursorAdapter;
 import database.Patient;
+
+import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
 
 public class CreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -49,11 +43,10 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    public void showDialogOnButtonClick()
-    {
-        btn = (Button)findViewById(R.id.addPatientButton);
+    public void showDialogOnButtonClick() {
+        btn = (Button) findViewById(R.id.addPatientButton);
 
-        btn.setOnClickListener(new View.OnClickListener(){
+        btn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -63,13 +56,10 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
     }
 
     @Override
-    protected Dialog onCreateDialog(int id){
-        if(id == DIALOG_ID)
-        {
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_ID) {
             return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
