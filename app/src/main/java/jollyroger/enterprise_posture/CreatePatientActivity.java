@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -27,14 +28,15 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
     String lastName;
-    int date = datePicker;
+    DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
+    String date;
     //String date;
     Spinner yearSpinner;
     Spinner monthSpinner;
     Spinner daySpinner;
-    String day;
-    String month;
-    String year;
+    int day = dp.getDayOfMonth();
+    int month = dp.getMonth();
+    int year = dp.getYear();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                year = view.toString();
-                System.out.println(year);
+                //year = view.toString();
+                //System.out.println(year);
             }
 
 
@@ -65,8 +67,8 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                month = view.toString();
-                System.out.println(month);
+                //month = view.toString();
+                //System.out.println(month);
             }
 
 
@@ -81,8 +83,8 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                day = view.toString();
-                System.out.println(day);
+                //day = view.toString();
+                //System.out.println(day);
             }
 
 
@@ -100,7 +102,7 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         //Grab text from the text fields
         EditText firstName = (EditText) findViewById(R.id.firstNameInput);
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);
-        //date = month+"/"+day+"/"+year;
+        date = month+"/"+day+"/"+year;
 
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
