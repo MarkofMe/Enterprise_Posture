@@ -17,12 +17,21 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-    </RelativeLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/my_blue"
+            android:layout_gravity="bottom"
+            android:onClick="Add"
+            android:text="Add New Patient"
+            />
+
+    </LinearLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
