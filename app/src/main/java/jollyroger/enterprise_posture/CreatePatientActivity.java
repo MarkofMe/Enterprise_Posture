@@ -19,7 +19,7 @@ import database.Patient;
 public class CreatePatientActivity extends AppCompatActivity {
 
 
-    DatabaseHandler dbHandler = new DatabaseHandler(getContext());
+    DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
     String lastName;
     int date = datePicker;
