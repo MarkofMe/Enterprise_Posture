@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="68dp"
-            android:text="First Name"
+            android:text="@string/first_name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="108dp"
-            android:text="Last Name"
+            android:text="@string/last_name"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
@@ -66,7 +66,9 @@
             android:layout_marginTop="158dp"
             android:background="@color/my_blue"
             android:onClick="AddDate"
-            android:text="Add Date" />
+            android:text="Add Date"
+            android:id="@+id/button" />
+
 
 
     </RelativeLayout>
@@ -77,6 +79,6 @@
         android:layout_gravity="bottom"
         android:background="@color/my_blue"
         android:onClick="Add"
-        android:text="Add Patient" />
+        android:text="@string/add_patient" />
 
 </android.support.design.widget.CoordinatorLayout>
