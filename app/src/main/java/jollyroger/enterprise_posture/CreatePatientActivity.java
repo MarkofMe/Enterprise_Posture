@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 
 import java.util.Date;
 
@@ -20,11 +21,9 @@ public class CreatePatientActivity extends AppCompatActivity {
 
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
-    String firstName = Integer.toString(firstNameInput);
-    String lastName = Integer.toString(lastNameInput);
+    String firstName;
+    String lastName;
     int date = datePicker;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +38,27 @@ public class CreatePatientActivity extends AppCompatActivity {
 
     public void Add(View view)
     {
+        EditText firstName = (EditText) findViewById(R.id.firstNameInput);
+        EditText lastName = (EditText) findViewById(R.id.lastNameInput);
+        dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(date), "male", 1));
+        finish();
+    }
 
-       dbHandler.insertDataPatients(new Patient(firstName, lastName, new Date("15/11/1992"), "male", true));
 
+    public void AddDate(View view)
+    {
+        setContentView(R.layout.activity_create_patient_date);
+        Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    public void Return(View view){
+
+        setContentView(R.layout.activity_create_patient);
+        Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 }

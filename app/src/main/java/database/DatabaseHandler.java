@@ -59,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_GENDER
                 + " TEXT NOT NULL, "
                 + PT_Active
-                + " TEXT NOT NULL )";
+                + " INTEGER NOT NULL )";
 
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments

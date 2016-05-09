@@ -10,14 +10,14 @@ public class Patient {
     private String SurName;
     private Date DoB;
     private String Gender;
-    private Boolean Active;
+    private Integer Active;
 
     //Constructor
     public Patient() {
 
     }
 
-    public Patient(String FirstName, String SurName, Date DoB, String Gender, Boolean Active) {
+    public Patient(String FirstName, String SurName, Date DoB, String Gender, Integer Active) {
         this.FirstName = FirstName;
         this.SurName = SurName;
         this.DoB = DoB;
@@ -66,11 +66,11 @@ public class Patient {
         Gender = gender;
     }
 
-    public Boolean getActive() {
+    public Integer getActive() {
         return Active;
     }
 
-    public void setActive(Boolean active) {
+    public void setActive(Integer active) {
         Active = active;
     }
 }
