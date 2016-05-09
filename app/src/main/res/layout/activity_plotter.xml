@@ -19,9 +19,33 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/rootXML"
+        >
 
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/undo"
+            android:id="@+id/undo_button"
+            android:layout_marginBottom="40dp"
+            android:layout_marginStart="68dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:onClick="onBtnClicked"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit"
+            android:id="@+id/submit_button"
+            android:layout_alignTop="@+id/undo_button"
+            android:layout_toEndOf="@+id/undo_button"
+            android:layout_marginStart="48dp"
+            android:onClick="onBtnClicked"
+            />
     </RelativeLayout>
 
 

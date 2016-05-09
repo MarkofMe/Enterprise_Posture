@@ -25,6 +25,8 @@
     <string name="dialog_title">Continue?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="submit">Submit</string>
+    <string name="undo">Undo</string>
 
     <string-array name="tabs">
         <item>Camera</item>

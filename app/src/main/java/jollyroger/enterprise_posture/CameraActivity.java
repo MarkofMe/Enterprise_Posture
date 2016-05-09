@@ -1,5 +1,6 @@
 package jollyroger.enterprise_posture;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -69,10 +70,22 @@ public class CameraActivity extends AppCompatActivity {
         b.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 camera.takePicture(null, null, pic);
-
+                /*
                 Intent intent = new Intent(cont, PlotterActivity.class);
                 intent.putExtra("image location as path", imageUri);
                 startActivity(intent);
+                */
+
+
+                Intent intent = new Intent(cont, PlotterActivity.class);
+                Bitmap image= INSERT-IMAGEVIEW-VARIABLE-HERE.getDrawingCache();  // create bitmap representation of the picture taken.
+
+                Bundle extras = new Bundle();
+                extras.putParcelable("imagebitmap", image);
+                intent.putExtras(extras);
+                startActivity(intent);
+
+
             }
         });
 
