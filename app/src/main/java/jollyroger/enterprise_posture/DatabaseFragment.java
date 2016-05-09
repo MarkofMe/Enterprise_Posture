@@ -41,7 +41,7 @@ public class DatabaseFragment extends Fragment {
         return v;
     }
 
-    private void populateListView(View v){
+    private void populateListView(View v) {
 
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
 
@@ -58,11 +58,9 @@ public class DatabaseFragment extends Fragment {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         super.onResume();
-        if (!getUserVisibleHint())
-        {
+        if (!getUserVisibleHint()) {
             return;
         }
 

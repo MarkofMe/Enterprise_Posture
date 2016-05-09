@@ -19,6 +19,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import static jollyroger.enterprise_posture.R.id.camera_toolbar;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -39,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             File pictureFile = getOutputMediaFile();
-            if (pictureFile == null){
+            if (pictureFile == null) {
                 Log.d(null, "Error creating media file, check storage permissions");
                 return;
             }
@@ -57,7 +58,7 @@ public class CameraActivity extends AppCompatActivity {
     };
 
     //without the ability to test, I think this SHOULD be the place that the activity changes?
-    public void confirm(){
+    public void confirm() {
         final Context cont = this;
         AlertDialog.Builder b = new AlertDialog.Builder(this);
 
@@ -102,7 +103,7 @@ public class CameraActivity extends AppCompatActivity {
         fl.addView(preview);
 
         captureButton = (Button) findViewById(R.id.button_capture);
-        captureButton.setOnClickListener(new View.OnClickListener(){
+        captureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 confirm();
@@ -133,47 +134,43 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         super.onPause();
         releaseCamera();
     }
 
-    public static Camera getCameraInstance()
-    {
+    public static Camera getCameraInstance() {
         Camera c = null;
 
         try {
             c = Camera.open();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.d(null, "Error opening camera: " + e.getMessage());
         }
 
         return c;
     }
 
-    private void releaseCamera(){
-        if (camera != null){
+    private void releaseCamera() {
+        if (camera != null) {
             camera.release();
             camera = null;
         }
     }
 
-    private static File getOutputMediaFile()
-    {
+    private static File getOutputMediaFile() {
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "MyCameraApp");
 
         // Create the storage directory if it does not exist
-        if (! mediaStorageDir.exists()){
-            if (! mediaStorageDir.mkdirs()){
+        if (!mediaStorageDir.exists()) {
+            if (!mediaStorageDir.mkdirs()) {
                 Log.d("MyCameraApp", "failed to create directory");
                 return null;
             }
         }
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        imageUri = mediaStorageDir.getPath() + File.separator + "IMG_"+ timeStamp + ".jpg";
+        imageUri = mediaStorageDir.getPath() + File.separator + "IMG_" + timeStamp + ".jpg";
         File mediaFile = new File(imageUri);
 
         return mediaFile;
