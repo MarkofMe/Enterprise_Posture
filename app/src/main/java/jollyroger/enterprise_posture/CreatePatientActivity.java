@@ -1,42 +1,34 @@
 package jollyroger.enterprise_posture;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.Date;
 
-import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
-import static jollyroger.enterprise_posture.R.id.datePicker;
-import static jollyroger.enterprise_posture.R.id.firstNameInput;
-import static jollyroger.enterprise_posture.R.id.lastNameInput;
-
 import database.DatabaseHandler;
-import database.ListviewCursorAdapter;
 import database.Patient;
 
-public class CreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
 
+public class CreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
     String lastName;
-    DatePicker dp = (DatePicker) findViewById(R.id.datePicker);
-    //String date;
-    //String date;
-    Spinner yearSpinner;
-    Spinner monthSpinner;
-    Spinner daySpinner;
-    int day = dp.getDayOfMonth();
-    int month = dp.getMonth();
-    int year = dp.getYear();
+    int date;
+
+    int year_x, month_x, day_x;
+    static final int DIALOG_ID = 0;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,89 +37,56 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
         setSupportActionBar(toolbar);
 
-        //yearSpinner = (Spinner) findViewById(R.id.YearSpinner);
-        //ArrayAdapter yearAdapter = ArrayAdapter.createFromResource(this, R.array.Years, android.R.layout.simple_spinner_item);
-        //yearSpinner.setAdapter(yearAdapter);
-        //yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-        //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //year = view.toString();
-                //System.out.println(year);
-        //    }
-
-
-        //    public void onNothingSelected(AdapterView<?> parent) {
-
-        //    }
-        //});
-
-        //monthSpinner = (Spinner) findViewById(R.id.MonthSpinner);
-        //ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(this, R.array.Months, android.R.layout.simple_spinner_item);
-        //monthSpinner.setAdapter(monthAdapter);
-        //monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-        //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //month = view.toString();
-                //System.out.println(month);
-        //    }
-
-
-        //    public void onNothingSelected(AdapterView<?> parent) {
-
-        //    }
-        //});
-
-        //daySpinner = (Spinner) findViewById(R.id.DaySpinner);
-        //ArrayAdapter dayAdapter = ArrayAdapter.createFromResource(this, R.array.Days, android.R.layout.simple_spinner_item);
-        //daySpinner.setAdapter(dayAdapter);
-        //daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-        //    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //day = view.toString();
-                //System.out.println(day);
-        //    }
-
-
-        //    public void onNothingSelected(AdapterView<?> parent) {
-
-        //    }
-        //});
+        showDialogOnButtonClick();
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+    public void showDialogOnButtonClick() {
+        btn = (Button) findViewById(R.id.addPatientButton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                showDialog(DIALOG_ID);
+            }
+        });
+    }
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == DIALOG_ID) {
+            return new DatePickerDialog(this, dpickerListener, year_x, month_x, day_x);
+        } else {
+            return null;
+        }
+    }
+
+    private DatePickerDialog.OnDateSetListener dpickerListener
+            = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            year_x = year;
+            month_x = monthOfYear;
+            day_x = dayOfMonth;
+        }
+    };
 
     //On button press of add patient
     public void Add(View view) {
         //Grab text from the text fields
         EditText firstName = (EditText) findViewById(R.id.firstNameInput);
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);
-        //date = month+"/"+day+"/"+year;
-
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
-            dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(month+"/"+day+"/"+year), "male", 1));
+            dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), "male", 1));
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    public void AddDate(View view) {
-        setContentView(R.layout.activity_create_patient_date);
-        Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
-        setSupportActionBar(toolbar);
-    }
-
-    public void Return(View view) {
-
-        setContentView(R.layout.activity_create_patient);
-        Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
