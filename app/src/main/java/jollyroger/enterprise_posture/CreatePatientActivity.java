@@ -27,7 +27,6 @@ import database.Patient;
 
 public class CreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
     String lastName;
@@ -45,8 +44,6 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         setSupportActionBar(toolbar);
 
         showDialogOnButtonClick();
-
-
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -87,7 +84,6 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         }
     };
 
-
     //On button press of add patient
     public void Add(View view) {
         //Grab text from the text fields
@@ -102,7 +98,6 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
