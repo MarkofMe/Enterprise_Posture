@@ -19,7 +19,7 @@ import database.Patient;
 public class CreatePatientActivity extends AppCompatActivity {
 
 
-    //DatabaseHandler dbHandler = new DatabaseHandler(getContext());
+    DatabaseHandler dbHandler = new DatabaseHandler(getContext());
     String firstName;
     String lastName;
     int date = datePicker;
@@ -40,7 +40,7 @@ public class CreatePatientActivity extends AppCompatActivity {
 
 
 
-       //dbHandler.insertDataPatients(new Patient(firstName, lastName, new Date(date), "male", true));
+       dbHandler.insertDataPatients(new Patient("Joel2", "Wade2", new Date(date), "male", true));
 
     }
 
