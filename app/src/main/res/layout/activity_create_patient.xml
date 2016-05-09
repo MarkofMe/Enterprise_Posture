@@ -58,7 +58,7 @@
             android:layout_marginTop="98dp"
             android:ems="10"
             android:inputType="textPersonName"/>
-
+<!--
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -68,6 +68,32 @@
             android:onClick="AddDate"
             android:text="Add Date"
             android:id="@+id/button" />
+            -->
+
+        <Spinner
+            android:entries="@array/Years"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/YearSpinner"
+            android:layout_marginStart="278dp"
+            android:layout_marginTop="200dp" />
+
+        <Spinner
+            android:entries="@array/Days"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/DaySpinner"
+            android:layout_marginStart="135dp"
+            android:layout_marginTop="200dp" />
+
+        <Spinner
+            android:entries="@array/Months"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/MonthSpinner"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="200dp" />
+
 
 
 
