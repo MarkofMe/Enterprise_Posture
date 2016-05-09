@@ -35,23 +35,10 @@ public class DatabaseFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_database, container, false);
-//        DatabaseHandler dbHandler = new DatabaseHandler(getContext());
+
 //        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male", true));
 //        dbHandler.insertDataPatients(new Patient("Mark", "wade", new Date("15/11/1992"), "male", true));
 //        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male", true));
-//        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male", true));
-//
-//
-//
-//        Cursor cursor = dbHandler.getPatientsTable();
-//
-//        Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
-//
-////
-//        ListView lv = (ListView) v.findViewById(R.id.listview_patients);
-////
-//        ListviewCursorAdapter lvAdapter = new ListviewCursorAdapter(getContext(), cursor);
-//        lv.setAdapter(lvAdapter);
 
         populateListView(v);
 
@@ -61,6 +48,9 @@ public class DatabaseFragment extends Fragment {
     private void populateListView(View v){
 
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
+
+        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("11/15/1992"), "male", 1));
+
         Cursor cursor = dbHandler.getPatientsTable();
 
         //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
@@ -82,7 +72,5 @@ public class DatabaseFragment extends Fragment {
 
         populateListView(getView());
     }
-
-
 
 }
