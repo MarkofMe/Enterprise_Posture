@@ -21,6 +21,10 @@
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="add_patient">Add Patient</string>
+    <string name="dialog_message">Would you like to continue with this photo?</string>
+    <string name="dialog_title">Continue?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <string-array name="tabs">
         <item>Camera</item>
