@@ -27,8 +27,8 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
     String lastName;
-    //int date = datePicker;
-    String date;
+    int date = datePicker;
+    //String date;
     Spinner yearSpinner;
     Spinner monthSpinner;
     Spinner daySpinner;
@@ -47,52 +47,49 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         ArrayAdapter yearAdapter = ArrayAdapter.createFromResource(this, R.array.Years, android.R.layout.simple_spinner_item);
         yearSpinner.setAdapter(yearAdapter);
         yearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 year = view.toString();
                 System.out.println(year);
             }
 
-            @Override
+
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-        yearSpinner.setOnItemSelectedListener(this);
 
         monthSpinner = (Spinner) findViewById(R.id.MonthSpinner);
         ArrayAdapter monthAdapter = ArrayAdapter.createFromResource(this, R.array.Months, android.R.layout.simple_spinner_item);
         monthSpinner.setAdapter(monthAdapter);
         monthSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 month = view.toString();
                 System.out.println(month);
             }
 
-            @Override
+
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-        monthSpinner.setOnItemSelectedListener(this);
 
         daySpinner = (Spinner) findViewById(R.id.DaySpinner);
         ArrayAdapter dayAdapter = ArrayAdapter.createFromResource(this, R.array.Days, android.R.layout.simple_spinner_item);
         daySpinner.setAdapter(dayAdapter);
         daySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 day = view.toString();
                 System.out.println(day);
             }
 
-            @Override
+
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-        daySpinner.setOnItemSelectedListener(this);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -103,7 +100,7 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         //Grab text from the text fields
         EditText firstName = (EditText) findViewById(R.id.firstNameInput);
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);
-        date = month+"/"+day+"/"+year;
+        //date = month+"/"+day+"/"+year;
 
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
@@ -130,7 +127,6 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
