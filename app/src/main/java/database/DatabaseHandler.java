@@ -26,6 +26,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String PT_SURNAME = "Surname";
     private static final String PT_DOB = "DoB";
     private static final String PT_GENDER = "Gender";
+    private static final String PT_Active = "Active";
 
     //Appointments Table Columns names
     private static final String AP_ID = "_id";
@@ -56,6 +57,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_DOB
                 + " TEXT NOT NULL, "
                 + PT_GENDER
+                + " TEXT NOT NULL "
+                + PT_Active
                 + " TEXT NOT NULL " + ")";
 
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
@@ -98,6 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
+        values.put(PT_Active, patient.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
@@ -112,6 +116,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, p.getSurName());
         values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
         values.put(PT_GENDER, p.getGender());
+        values.put(PT_Active, p.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
@@ -143,6 +148,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
+        values.put(PT_Active, patient.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id}); //queries by finding the field based on id
         return true;

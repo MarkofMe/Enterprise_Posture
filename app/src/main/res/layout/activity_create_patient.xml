@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
@@ -17,21 +19,58 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
 
 
-        <Button
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/my_blue"
-            android:layout_gravity="bottom"
-            android:onClick="Add"
-            android:text="Add New Patient"
-            />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="First Name"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:id="@+id/textView9" />
 
-    </LinearLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="First Name"
+            android:ems="10"
+            android:id="@+id/firstNameInput"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="58dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Last Name"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="108dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="Last Name"
+            android:ems="10"
+            android:id="@+id/lastNameInput"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="98dp"/>
+
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/my_blue"
+        android:onClick="Add"
+        android:text="Add Patient" />
 
 </android.support.design.widget.CoordinatorLayout>
