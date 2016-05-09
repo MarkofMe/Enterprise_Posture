@@ -40,8 +40,7 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="58dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="First Name" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,8 +57,7 @@
             android:layout_marginStart="100dp"
             android:layout_marginTop="98dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Last Name" />
+            android:inputType="textPersonName"/>
 
         <Button
             android:layout_width="200dp"

@@ -36,10 +36,6 @@ public class DatabaseFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_database, container, false);
 
-//        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male", true));
-//        dbHandler.insertDataPatients(new Patient("Mark", "wade", new Date("15/11/1992"), "male", true));
-//        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("15/11/1992"), "male", true));
-
         populateListView(v);
 
         return v;
@@ -49,7 +45,7 @@ public class DatabaseFragment extends Fragment {
 
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
 
-        dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("11/15/1992"), "male", 1));
+        //dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("11/15/1992"), "male", 1));
 
         Cursor cursor = dbHandler.getPatientsTable();
 
