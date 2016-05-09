@@ -57,9 +57,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_DOB
                 + " TEXT NOT NULL, "
                 + PT_GENDER
-                + " TEXT NOT NULL "
+                + " TEXT NOT NULL, "
                 + PT_Active
-                + " TEXT NOT NULL " + ")";
+                + " TEXT NOT NULL )";
 
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
