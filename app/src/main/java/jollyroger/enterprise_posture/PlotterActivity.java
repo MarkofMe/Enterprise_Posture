@@ -31,7 +31,7 @@ PlotterActivity extends AppCompatActivity {
     ArrayList<Point> markerPositions;   // stores the X and Y of the pointers.
 
     static final int CAM_REQUEST = 10;
-    ImageView photo = null;
+    Bitmap photo = null;
     private ImageView ImageHolder;
 
     @Override
@@ -127,6 +127,9 @@ PlotterActivity extends AppCompatActivity {
             case R.id.submit_button:
 
 
+                Intent intent = new Intent(this, DeciderActivity.class);
+                intent.putExtra("CameraImage", photo);
+                startActivity(intent);
                 // continue on to calculation page (needs implementing).
 
                 // also - write imageView stored in here, markerPositions (array), and the returned data to the database.
@@ -154,6 +157,7 @@ PlotterActivity extends AppCompatActivity {
             if (requestCode == CAM_REQUEST) {
                 Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
                 ImageHolder.setImageBitmap(cameraImage);
+                photo = cameraImage;
             }
         }
 
