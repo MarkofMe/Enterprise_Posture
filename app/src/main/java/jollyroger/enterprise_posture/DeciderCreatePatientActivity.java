@@ -2,6 +2,8 @@ package jollyroger.enterprise_posture;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,11 +33,12 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
     String lastName;
     int date;
 
-
     int month_x, day_x;
     int year_x = 2000;
     static final int DIALOG_ID = 0;
     Button btn;
+
+    Bitmap photo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,10 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
 
         Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        Bitmap bitmap = intent.getParcelableExtra("CameraImage");
+        photo = bitmap;
 
         showDialogOnButtonClick();
 
@@ -105,6 +113,11 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
+
+        Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
+        intent.putExtra("CameraImage", photo);
+        startActivity(intent);
+
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

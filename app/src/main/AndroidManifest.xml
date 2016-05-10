@@ -59,6 +59,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
+        <activity
+            android:name=".AddToPatientActivity"
+            android:label="Add">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".DeciderCreatePatientActivity"
+            android:label="Create">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".DeciderCreateAppointmentActivity"
+            android:label="Create Appointment">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DeciderActivity" />
+        </activity>
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -66,10 +87,7 @@
         -->
         <meta-data android:name="com.google.android.gms.version" />
 
-        <activity android:name=".AddToPatientActivity" />
         <activity android:name=".PatientProfileActivity" />
-        <activity android:name=".DeciderCreatePatientActivity" />
-        <activity android:name=".DeciderCreateAppointmentActivity"></activity>
     </application>
 
 </manifest>

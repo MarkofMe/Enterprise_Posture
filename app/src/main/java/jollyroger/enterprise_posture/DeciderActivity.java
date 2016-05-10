@@ -38,6 +38,9 @@ public class DeciderActivity extends AppCompatActivity {
     }
 
     public void AddToNewPatient(View view) {
+        Intent intent = new Intent(this, DeciderCreatePatientActivity.class);
+        intent.putExtra("CameraImage", photo);
+        startActivity(intent);
 
     }
 
