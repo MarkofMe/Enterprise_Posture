@@ -68,7 +68,8 @@
 
         <activity android:name=".AddToPatientActivity" />
         <activity android:name=".PatientProfileActivity" />
-        <activity android:name=".DeciderCreatePatientActivity"></activity>
+        <activity android:name=".DeciderCreatePatientActivity" />
+        <activity android:name=".CreateAppointmentActivity"></activity>
     </application>
 
 </manifest>
