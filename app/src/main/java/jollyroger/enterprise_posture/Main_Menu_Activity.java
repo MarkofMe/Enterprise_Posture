@@ -40,7 +40,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
         setContentView(activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(main_menu_toolbar);
         setSupportActionBar(toolbar);
-        imageView = (ImageView)findViewById(R.id.image_viewer);
+        imageView = (ImageView) findViewById(R.id.image_viewer);
 
 
         //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
@@ -189,12 +189,10 @@ public class Main_Menu_Activity extends AppCompatActivity {
         startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
     }
 
-    private File getFile()
-    {
+    private File getFile() {
         File folder = new File("sdcard/camera_app");
 
-        if(!folder.exists())
-        {
+        if (!folder.exists()) {
             folder.mkdir();
         }
 
