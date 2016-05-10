@@ -5,11 +5,9 @@
     android:fitsSystemWindows="true">
 
 
-        <include
-            android:id="@+id/plotter_toolbar"
-            layout="@layout/app_bar" />
-
-
+    <include
+        android:id="@+id/plotter_toolbar"
+        layout="@layout/app_bar" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true" />
 
         <Button
             android:id="@+id/undo_button"

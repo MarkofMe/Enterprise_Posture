@@ -35,17 +35,17 @@
     </LinearLayout>
 
 
-<!--
-    <fragment
-        android:id="@+id/fragment_navigation_drawer"
-        android:name="jollyroger.enterprise_posture.NavigationDrawerFragment"
-        android:layout_width="@dimen/nav_drawer_width"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:layout="@layout/fragment_navigation_drawer"
-        tools:layout="@layout/fragment_navigation_drawer" />
+    <!--
+        <fragment
+            android:id="@+id/fragment_navigation_drawer"
+            android:name="jollyroger.enterprise_posture.NavigationDrawerFragment"
+            android:layout_width="@dimen/nav_drawer_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:layout="@layout/fragment_navigation_drawer"
+            tools:layout="@layout/fragment_navigation_drawer" />
 
-        -->
+            -->
 
 
 </android.support.v4.widget.DrawerLayout>

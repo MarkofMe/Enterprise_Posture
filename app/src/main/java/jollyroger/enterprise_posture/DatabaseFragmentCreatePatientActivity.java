@@ -44,7 +44,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.genderSpinner);
+        Spinner dropdown = (Spinner) findViewById(R.id.genderSpinner);
         String[] items = new String[]{"Male", "Female", "Other", "Not specified"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);

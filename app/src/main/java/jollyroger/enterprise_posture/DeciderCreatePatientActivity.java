@@ -49,7 +49,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Spinner dropdown = (Spinner)findViewById(R.id.decidergenderSpinner);
+        Spinner dropdown = (Spinner) findViewById(R.id.decidergenderSpinner);
         String[] items = new String[]{"Male", "Female", "Other", "Not specified"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);

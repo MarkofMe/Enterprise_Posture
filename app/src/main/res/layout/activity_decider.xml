@@ -5,11 +5,9 @@
     android:fitsSystemWindows="true">
 
 
-        <include
-            android:id="@+id/decider_toolbar"
-            layout="@layout/app_bar" />
-
-
+    <include
+        android:id="@+id/decider_toolbar"
+        layout="@layout/app_bar" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -46,14 +44,13 @@
             android:layout_centerHorizontal="true"
             android:onClick="AddToExistingPatient"
             android:layout_marginTop="160dp" />
-        
+
         <ImageView
             android:id="@+id/decider_imageholder"
             android:layout_width="300dp"
             android:layout_height="360dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            />
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
 

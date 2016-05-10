@@ -5,10 +5,9 @@
     android:background="#FFFFFF"
     android:fitsSystemWindows="true">
 
-        <include
-            android:id="@+id/create_patient_toolbar"
-            layout="@layout/app_bar" />
-
+    <include
+        android:id="@+id/create_patient_toolbar"
+        layout="@layout/app_bar" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
