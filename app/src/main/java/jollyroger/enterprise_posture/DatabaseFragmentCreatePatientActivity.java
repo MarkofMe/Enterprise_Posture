@@ -50,7 +50,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         dropdown.setAdapter(adapter);
 
         //If Edit patient not create patient.
-        if ( getIntent().getExtras() != null){
+        if (getIntent().getExtras() != null) {
             Bundle data = getIntent().getExtras();
             Patient p = data.getParcelable("Patient");
 
