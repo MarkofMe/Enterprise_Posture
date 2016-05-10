@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jollyroger.enterprise_posture">
-
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permisson.CAMERA" />
     <application
         android:allowBackup="true"
         android:debuggable="true"
@@ -35,14 +36,20 @@
                 android:value=".Main_Menu_Activity" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <uses-permission android:name="android.permisson.CAMERA" />
-                <uses-feature android:name="android.hardware.camera2" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".CreatePatientActivity"
             android:label="Create Patient">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".PlotterActivity"
+            android:label="Plot Points">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
@@ -55,7 +62,6 @@
         <meta-data
             android:name="com.google.android.gms.version" />
 
-        <activity android:name=".PlotterActivity" />
         <activity android:name=".DeciderActivity" />
         <activity android:name=".AddToPatientActivity" />
         <activity android:name=".PatientProfileActivity"></activity>

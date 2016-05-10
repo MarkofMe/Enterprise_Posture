@@ -21,10 +21,8 @@
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:background="#222222"
         >
         <FrameLayout
-            android:background="#ffffff"
             android:id="@+id/camera_preview"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"

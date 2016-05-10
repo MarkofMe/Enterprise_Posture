@@ -70,11 +70,11 @@ public class CameraActivity extends AppCompatActivity {
         b.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 camera.takePicture(null, null, pic);
-                /*
+
                 Intent intent = new Intent(cont, PlotterActivity.class);
                 intent.putExtra("image location as path", imageUri);
                 startActivity(intent);
-                */
+
 
 
                 //Intent intent = new Intent(cont, PlotterActivity.class);

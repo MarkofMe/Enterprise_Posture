@@ -1,8 +1,12 @@
 package jollyroger.enterprise_posture;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -13,11 +17,17 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.net.URI;
 
 import tabs.SlidingTabLayout;
 
@@ -28,6 +38,8 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
     private ViewPager mPager;
     private SlidingTabLayout mTabs;
+    ImageView imageView;
+    static final int CAM_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +47,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
         setContentView(activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(main_menu_toolbar);
         setSupportActionBar(toolbar);
+        imageView = (ImageView)findViewById(R.id.image_viewer);
 
 
         //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
@@ -159,12 +172,53 @@ public class Main_Menu_Activity extends AppCompatActivity {
     }
 
     public void OpenCamera(View view) {
-        startActivity(new Intent(this, CameraActivity.class));
+
+        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File file = getFile();
+        camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(camera_intent, CAM_REQUEST);
+
+//        imageView.buildDrawingCache();
+//        Bitmap image= imageView.getDrawingCache();
+//
+//        Bundle extras = new Bundle();
+//        extras.putParcelable("imagebitmap", image);
+//        intent.putExtras(extras);
+//        startActivity(intent);
+
+        //startActivity(new Intent(this, CameraActivity.class));
+
+
     }
+
 
     public void AddNewPatient(View view) {
         startActivity(new Intent(this, CreatePatientActivity.class));
     }
 
+    private File getFile()
+    {
+        File folder = new File("sdcard/camera_app");
 
+        if(!folder.exists())
+        {
+            folder.mkdir();
+        }
+
+        File image_file = new File(folder, "cam_image.jpg");
+
+        return image_file;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        File file = getFile();
+        String path = "sdcard/camera_app/cam_image.jpg";
+        //imageView.setImageDrawable(Drawable.createFromPath(path));
+        Intent intent = new Intent(this, PlotterActivity.class);
+        intent.putExtra(path, Uri.fromFile(file));
+        startActivity(intent);
+
+    }
 }
