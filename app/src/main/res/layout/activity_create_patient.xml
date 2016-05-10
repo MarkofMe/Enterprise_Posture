@@ -70,8 +70,22 @@
             android:background="@color/my_blue"
             android:text="Add Date Of Birth" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender:"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/txtViewGender"
+            android:layout_centerVertical="true"
+            android:layout_alignStart="@+id/addPatientDOB" />
 
-
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/genderSpinner"
+            android:layout_below="@+id/txtViewGender"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/lastNameInput" />
 
 
     </RelativeLayout>
