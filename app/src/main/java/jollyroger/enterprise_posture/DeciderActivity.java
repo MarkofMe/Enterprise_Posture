@@ -14,6 +14,8 @@ import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 public class DeciderActivity extends AppCompatActivity {
 
 
+    Bitmap photo = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,7 @@ public class DeciderActivity extends AppCompatActivity {
         Bitmap bitmap = intent.getParcelableExtra("CameraImage");
         ImageView ImageHolder = (ImageView) findViewById(R.id.decider_imageholder);
         ImageHolder.setImageBitmap(bitmap);
+        photo = bitmap;
 
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);
@@ -35,11 +38,13 @@ public class DeciderActivity extends AppCompatActivity {
     }
 
     public void AddToNewPatient(View view) {
-        startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
+
     }
 
     public void AddToExistingPatient(View view) {
-        startActivity(new Intent(this, AddToPatientActivity.class));
+        Intent intent = new Intent(this, AddToPatientActivity.class);
+        intent.putExtra("CameraImage", photo);
+        startActivity(intent);
     }
 
 }
