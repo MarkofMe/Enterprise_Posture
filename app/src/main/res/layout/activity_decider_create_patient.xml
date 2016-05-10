@@ -1,12 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="jollyroger.enterprise_posture.DeciderCreatePatientActivity">
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true">
+
+    <include
+        android:id="@+id/create_patient_toolbar"
+        layout="@layout/app_bar" />
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:text="@string/first_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/deciderfirstNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="58dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="108dp"
+            android:text="@string/last_name"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <EditText
+            android:id="@+id/deciderlastNameInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="98dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/deciderDOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="170dp"
+            android:text="Date of Birth: "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:id="@+id/decideraddPatientDOB"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="200dp"
+            android:background="@color/my_blue"
+            android:text="Add Date Of Birth" />
+
+        <TextView
+            android:id="@+id/txtViewGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/addPatientDOB"
+            android:layout_centerVertical="true"
+            android:text="Gender:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/decidergenderSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/lastNameInput"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtViewGender" />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/my_blue"
+        android:onClick="Add"
+        android:text="@string/add_patient" />
 
 </RelativeLayout>
