@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import database.DatabaseHandler;
@@ -40,7 +39,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_patient);
+        setContentView(R.layout.activity_database_fragment_create_patient);
         Toolbar toolbar = (Toolbar) findViewById(create_patient_toolbar);
         setSupportActionBar(toolbar);
 
