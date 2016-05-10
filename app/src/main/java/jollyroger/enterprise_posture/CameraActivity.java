@@ -77,13 +77,13 @@ public class CameraActivity extends AppCompatActivity {
                 */
 
 
-                Intent intent = new Intent(cont, PlotterActivity.class);
-                Bitmap image= INSERT-IMAGEVIEW-VARIABLE-HERE.getDrawingCache();  // create bitmap representation of the picture taken.
+                //Intent intent = new Intent(cont, PlotterActivity.class);
+                //Bitmap image= INSERT-IMAGEVIEW-VARIABLE-HERE.getDrawingCache();  // create bitmap representation of the picture taken.
 
-                Bundle extras = new Bundle();
-                extras.putParcelable("imagebitmap", image);
-                intent.putExtras(extras);
-                startActivity(intent);
+                //Bundle extras = new Bundle();
+                //extras.putParcelable("imagebitmap", image);
+                //intent.putExtras(extras);
+                //startActivity(intent);
 
 
             }
