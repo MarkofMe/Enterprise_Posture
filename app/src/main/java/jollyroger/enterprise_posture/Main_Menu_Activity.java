@@ -173,10 +173,10 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
     public void OpenCamera(View view) {
 
-        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File file = getFile();
-        camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-        startActivityForResult(camera_intent, CAM_REQUEST);
+//        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+//        File file = getFile();
+//        camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+//        startActivityForResult(camera_intent, CAM_REQUEST);
 
 //        imageView.buildDrawingCache();
 //        Bitmap image= imageView.getDrawingCache();
@@ -186,7 +186,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
 //        intent.putExtras(extras);
 //        startActivity(intent);
 
-        //startActivity(new Intent(this, CameraActivity.class));
+        startActivity(new Intent(this, PlotterActivity.class));
 
 
     }
@@ -205,7 +205,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
             folder.mkdir();
         }
 
-        File image_file = new File(folder, "cam_image.jpg");
+        File image_file = new File(folder, "cam_image.bmp");
 
         return image_file;
     }
@@ -215,12 +215,12 @@ public class Main_Menu_Activity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        File file = getFile();
-        path = "sdcard/camera_app/cam_image.jpg";
-        //imageView.setImageDrawable(Drawable.createFromPath(path));
-        Intent intent = new Intent(this, PlotterActivity.class);
-        intent.putExtra(path, Uri.fromFile(file));
-        startActivity(intent);
+        //File file = getFile();
+        path = "sdcard/camera_app/cam_image.bmp";
+        imageView.setImageDrawable(Drawable.createFromPath(path));
+        //Intent intent = new Intent(this, PlotterActivity.class);
+        //intent.putExtra(path, Uri.fromFile(file));
+        //startActivity(intent);
 
     }
 }

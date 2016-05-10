@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,11 @@ import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 
-public class PlotterActivity extends AppCompatActivity {
+import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
+import static jollyroger.enterprise_posture.R.id.settings_toolbar;
+
+public class
+PlotterActivity extends AppCompatActivity {
 
     ViewGroup root; // to soon be view of id "rootXML", which is the "relativeLayout" reference id.
     ArrayList<ImageView> clickMarker;   // stores collection of markers.
@@ -48,11 +53,13 @@ public class PlotterActivity extends AppCompatActivity {
 
 
 
-
-
-
-
         setTouchPointListener();
+
+        Toolbar toolbar = (Toolbar) findViewById(plotter_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void setTouchPointListener() // method to handle displaying pointers when clicked.

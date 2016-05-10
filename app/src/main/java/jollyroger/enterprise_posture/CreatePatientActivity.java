@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
@@ -25,6 +26,7 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
     String firstName;
     String lastName;
     int date;
+
 
     int year_x, month_x, day_x;
     static final int DIALOG_ID = 0;
@@ -44,7 +46,7 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
     }
 
     public void showDialogOnButtonClick() {
-        btn = (Button) findViewById(R.id.addPatientButton);
+        btn = (Button) findViewById(R.id.addPatientDOB);
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -69,8 +71,11 @@ public class CreatePatientActivity extends AppCompatActivity implements AdapterV
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             year_x = year;
-            month_x = monthOfYear;
+            month_x = monthOfYear + 1;
             day_x = dayOfMonth;
+            TextView DOB = (TextView) findViewById(R.id.DOB);
+            DOB.setText("Date of Birth: " + day_x + "/" + month_x + "/" + year_x);
+
         }
     };
 
