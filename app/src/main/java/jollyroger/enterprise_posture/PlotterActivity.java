@@ -21,7 +21,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
-import static jollyroger.enterprise_posture.R.id.settings_toolbar;
 
 public class
 PlotterActivity extends AppCompatActivity {
