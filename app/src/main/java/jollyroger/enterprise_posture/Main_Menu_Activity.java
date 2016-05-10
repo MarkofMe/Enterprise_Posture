@@ -210,11 +210,13 @@ public class Main_Menu_Activity extends AppCompatActivity {
         return image_file;
     }
 
+    public static String path;
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         File file = getFile();
-        String path = "sdcard/camera_app/cam_image.jpg";
+        path = "sdcard/camera_app/cam_image.jpg";
         //imageView.setImageDrawable(Drawable.createFromPath(path));
         Intent intent = new Intent(this, PlotterActivity.class);
         intent.putExtra(path, Uri.fromFile(file));

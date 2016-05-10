@@ -35,16 +35,16 @@ public class PlotterActivity extends AppCompatActivity {
         Intent i = getIntent();
 
         photo = new ImageView(this);
-        photo.setImageBitmap(BitmapFactory.decodeFile(i.getStringExtra("image location as path")));
-        Bundle extras = getIntent().getExtras();    // get the bitmap of image from CameraActivity.
-        Bitmap bmp = (Bitmap) extras.getParcelable("Bitmap");   // setting bitmap stored in parcel to new bitmap variable.
-        //photo = null; // ? needed ? //
-        photo.setImageBitmap(bmp);  // setting the image stored in bitmap to the imageview here.
+        photo.setImageBitmap(BitmapFactory.decodeFile(i.getStringExtra(Main_Menu_Activity.path)));
+//        Bundle extras = getIntent().getExtras();    // get the bitmap of image from CameraActivity.
+//        Bitmap bmp = (Bitmap) extras.getParcelable("Bitmap");   // setting bitmap stored in parcel to new bitmap variable.
+//        //photo = null; // ? needed ? //
+//        photo.setImageBitmap(bmp);  // setting the image stored in bitmap to the imageview here.
 
-//        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//        photo.setLayoutParams(lp);  // ?
-//        root.addView(photo);
-//        root.addView(photo, lp);
+        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        photo.setLayoutParams(lp);  // ?
+        root.addView(photo);
+        root.addView(photo, lp);
 
 
 
