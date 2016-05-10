@@ -1,12 +1,8 @@
 package jollyroger.enterprise_posture;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,17 +13,14 @@ import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ImageSpan;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
-import java.net.URI;
 
 import tabs.SlidingTabLayout;
 
@@ -193,7 +186,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
 
     public void AddNewPatient(View view) {
-        startActivity(new Intent(this, CreatePatientActivity.class));
+        startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
     }
 
     private File getFile()

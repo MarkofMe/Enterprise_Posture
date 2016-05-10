@@ -17,7 +17,7 @@ public class DeciderActivity extends AppCompatActivity {
     }
 
     public void AddToNewPatient(View view) {
-        startActivity(new Intent(this, CreatePatientActivity.class));
+        startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
     }
 
     public void AddToExistingPatient(View view) {

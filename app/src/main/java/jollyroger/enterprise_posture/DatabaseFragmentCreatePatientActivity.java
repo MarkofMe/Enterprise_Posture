@@ -20,7 +20,7 @@ import database.Patient;
 
 import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
 
-public class CreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     String firstName;
