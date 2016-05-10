@@ -14,8 +14,8 @@
         android:layout_marginTop="30dp"
         android:background="@color/my_blue"
         android:gravity="center"
-        android:onClick="OpenCamera"
-        android:text="@string/open_camera"
+        android:onClick="TakePicture"
+        android:text="@string/take_picture"
         android:textAppearance="?android:textAppearanceLarge" />
 
 

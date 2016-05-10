@@ -18,34 +18,46 @@
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/rootXML"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/ImageHolder"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/undo"
             android:id="@+id/undo_button"
-            android:layout_marginBottom="40dp"
-            android:layout_marginStart="68dp"
-            android:layout_alignParentBottom="true"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/camera_Loader"
+            android:background="@color/my_blue"
             android:onClick="onBtnClicked"
-            />
+            android:text="@string/undo" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:id="@+id/camera_Loader"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:text="@string/submit"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dp"
+            android:background="@color/my_blue"
+            android:onClick="OpenCamera"
+            android:text="@string/open_camera" />
+
+
+        <Button
             android:id="@+id/submit_button"
-            android:layout_alignTop="@+id/undo_button"
-            android:layout_toEndOf="@+id/undo_button"
-            android:layout_marginStart="48dp"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/camera_Loader"
+            android:background="@color/my_blue"
             android:onClick="onBtnClicked"
-            />
+            android:text="@string/submit" />
     </RelativeLayout>
 
 

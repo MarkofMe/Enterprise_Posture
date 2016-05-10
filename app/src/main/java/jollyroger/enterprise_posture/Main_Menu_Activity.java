@@ -171,7 +171,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_orange));
     }
 
-    public void OpenCamera(View view) {
+    public void TakePicture(View view) {
 
 //        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 //        File file = getFile();

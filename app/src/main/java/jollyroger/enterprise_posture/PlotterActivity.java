@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
@@ -12,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
@@ -25,7 +29,8 @@ PlotterActivity extends AppCompatActivity {
     ArrayList<ImageView> clickMarker;   // stores collection of markers.
     ArrayList<Point> markerPositions;   // stores the X and Y of the pointers.
 
-    ImageView photo;
+    static final int CAM_REQUEST = 1;
+    ImageView photo = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +42,19 @@ PlotterActivity extends AppCompatActivity {
         markerPositions = new ArrayList<>(); // arrayList which stores X, Y value of a point. This is used to store the locations of all points in this Image.
 
 
-        Intent i = getIntent();
+        //Intent i = getIntent();
 
-        photo = new ImageView(this);
-        photo.setImageBitmap(BitmapFactory.decodeFile(i.getStringExtra(Main_Menu_Activity.path)));
+        //photo = new ImageView(this);
+        //photo.setImageBitmap(BitmapFactory.decodeFile(i.getStringExtra(Main_Menu_Activity.path)));
 //        Bundle extras = getIntent().getExtras();    // get the bitmap of image from CameraActivity.
 //        Bitmap bmp = (Bitmap) extras.getParcelable("Bitmap");   // setting bitmap stored in parcel to new bitmap variable.
 //        //photo = null; // ? needed ? //
 //        photo.setImageBitmap(bmp);  // setting the image stored in bitmap to the imageview here.
 
-        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        photo.setLayoutParams(lp);  // ?
-        root.addView(photo);
-        root.addView(photo, lp);
+        //RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        //photo.setLayoutParams(lp);  // ?
+        //root.addView(photo);
+        //root.addView(photo, lp);
 
 
 
@@ -64,36 +69,42 @@ PlotterActivity extends AppCompatActivity {
 
     public void setTouchPointListener() // method to handle displaying pointers when clicked.
     {
-        root.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent e) {
-                if (e.getAction() == MotionEvent.ACTION_UP)  // touch lifted (clicked and released),
-                {
-                    // creating the image (pointer icon).
-                    ImageView newMarker = new ImageView(PlotterActivity.this);
-                    newMarker.setImageResource(R.drawable.markericon);
+        if(photo == null)
+        {
+            Toast.makeText(this, "No Picture Taken", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            root.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent e) {
+                    if (e.getAction() == MotionEvent.ACTION_UP)  // touch lifted (clicked and released),
+                    {
+                        // creating the image (pointer icon).
+                        ImageView newMarker = new ImageView(PlotterActivity.this);
+                        newMarker.setImageResource(R.drawable.markericon);
 
-                    // creating a relativeLayout LayoutParams object, to set Margins of object.
-                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    newMarker.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);  // Solves issue! - centre of image issue, allows the image to be centred when touched.
-                    //lp.setMargins((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2), 0, 0);    // setting margins of layoutParams to location touched.
-                    lp.leftMargin = (int) e.getX() - (newMarker.getMeasuredWidth() / 2);
-                    lp.topMargin = (int) e.getY() - (newMarker.getMeasuredHeight() / 2);
+                        // creating a relativeLayout LayoutParams object, to set Margins of object.
+                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        newMarker.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);  // Solves issue! - centre of image issue, allows the image to be centred when touched.
+                        //lp.setMargins((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2), 0, 0);    // setting margins of layoutParams to location touched.
+                        lp.leftMargin = (int) e.getX() - (newMarker.getMeasuredWidth() / 2);
+                        lp.topMargin = (int) e.getY() - (newMarker.getMeasuredHeight() / 2);
 
-                    newMarker.setLayoutParams(lp);  // setting ImageView layoutParams to that set above.
-                    newMarker.setScaleType(ImageView.ScaleType.MATRIX); // Solves issue! - setting scale, to avoid the smaller image issue when clicking at the sides of the screen.
-                    root.addView(newMarker);       // adding newMarker to the RelativeLayout.
-                    clickMarker.add(newMarker);   // add marker to array, so it can be undone if needed.
+                        newMarker.setLayoutParams(lp);  // setting ImageView layoutParams to that set above.
+                        newMarker.setScaleType(ImageView.ScaleType.MATRIX); // Solves issue! - setting scale, to avoid the smaller image issue when clicking at the sides of the screen.
+                        root.addView(newMarker);       // adding newMarker to the RelativeLayout.
+                        clickMarker.add(newMarker);   // add marker to array, so it can be undone if needed.
 
-                    // Points recording section.
-                    Point thisImage = new Point((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2));    // creating new Point object containing the location clicked (X, Y).
-                    markerPositions.add(thisImage); // adding created Point object to arrayList.
-                    // for testing purposes -Log.d("Points check", "The X is: " + thisImage.x  + " The Y is: " + thisImage.y + ". Also should match this X " + e.getX() + " and this: " + e.getY());
+                        // Points recording section.
+                        Point thisImage = new Point((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2));    // creating new Point object containing the location clicked (X, Y).
+                        markerPositions.add(thisImage); // adding created Point object to arrayList.
+                        // for testing purposes -Log.d("Points check", "The X is: " + thisImage.x  + " The Y is: " + thisImage.y + ". Also should match this X " + e.getX() + " and this: " + e.getY());
+                        return true;
+                    }
                     return true;
                 }
-                return true;
-            }
-        });
+            });
+        }
     }
 
     // method to handle button functionality when clicked.
@@ -139,13 +150,10 @@ PlotterActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
+    public void OpenCamera(View view) {
+        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //File file = getFile();
+        //camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+        startActivityForResult(camera_intent, CAM_REQUEST);
+    }
 }
