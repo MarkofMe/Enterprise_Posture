@@ -55,7 +55,7 @@ public class ListviewCursorAdapter extends CursorAdapter {
             if (d.equals(null)) {
                 d = "No dob set";
             } else {
-                dob.setText(d);
+                dob.setText("Dob: " + d);
             }
         } catch (ParseException e) {
             e.printStackTrace();
