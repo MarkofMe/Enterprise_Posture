@@ -16,7 +16,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import database.DatabaseHandler;
@@ -27,10 +26,6 @@ import static jollyroger.enterprise_posture.R.id.create_patient_toolbar;
 public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
-    String firstName;
-    String lastName;
-    int date;
-
 
     int month_x, day_x;
     int year_x = 2000;

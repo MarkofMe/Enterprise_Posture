@@ -45,8 +45,6 @@ public class DatabaseFragment extends Fragment {
 
         DatabaseHandler dbHandler = new DatabaseHandler(getContext());
 
-        //dbHandler.insertDataPatients(new Patient("joel", "wade", new Date("11/15/1992"), "male", 1));
-
         Cursor cursor = dbHandler.getPatientsTable();
 
         //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
