@@ -14,7 +14,6 @@ import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 public class DeciderActivity extends AppCompatActivity {
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

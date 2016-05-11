@@ -76,7 +76,6 @@ public class CameraActivity extends AppCompatActivity {
                 startActivity(intent);
 
 
-
                 //Intent intent = new Intent(cont, PlotterActivity.class);
                 //Bitmap image= INSERT-IMAGEVIEW-VARIABLE-HERE.getDrawingCache();  // create bitmap representation of the picture taken.
 
