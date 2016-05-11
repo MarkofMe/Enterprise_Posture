@@ -5,7 +5,9 @@ import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import database.DatabaseHandler;
 
@@ -15,6 +17,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     Bitmap photo = null;
+    int pID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,11 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         ImageView ImageHolder = (ImageView) findViewById(R.id.appointment_imageholder);
         ImageHolder.setImageBitmap(bitmap);
         photo = bitmap;
+
+        int pid = intent.getParcelableExtra("patientID");
+        pID = pid;
+
+        Toast.makeText(this, pID, Toast.LENGTH_SHORT).show();
 
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);

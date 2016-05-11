@@ -3,6 +3,7 @@ package database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -50,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_PATIENTS_TABLE = "CREATE TABLE "
                 + Table_Patients
                 + "(" + PT_ID//Make sure that this isn't an issue
-                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + " INTEGER PRIMARY KEY NOT NULL, "
                 + PT_FIRSTNAME
                 + " TEXT NOT NULL, "
                 + PT_SURNAME
@@ -65,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
                 + "(" + AP_ID//Make sure that this isn't an issue
-                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + " INTEGER PRIMARY NOT NULL, "
                 + AP_PATIENTID
                 + " TEXT NOT NULL, "
                 + AP_APPOINTMENTNO
@@ -94,10 +95,16 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Patients WHERE Active=1", null);
     }
 
+//    public int getNextID(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor c = db.rawQuery("SELECT COUNT(_id) FROM Patients", null);
+//        return c.getCount();
+//    }
 
     // Adds data to the patients table
     public boolean insertDataPatients() {
         ContentValues values = new ContentValues();
+        values.put(PT_ID, patient.getPatientID());
         values.put(PT_FIRSTNAME, patient.getFirstName());
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
@@ -113,6 +120,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public boolean insertDataPatients(Patient p) {
         ContentValues values = new ContentValues();
+        values.put(PT_ID, patient.getPatientID());
         values.put(PT_FIRSTNAME, p.getFirstName());
         values.put(PT_SURNAME, p.getSurName());
         values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
@@ -129,6 +137,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Adds data to the appointments table
     public boolean insertDataAppointments() {
         ContentValues values = new ContentValues();
+        values.put(AP_PATIENTID, appointment.getPatientID());
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate())); // because its a date variable
         values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));

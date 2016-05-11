@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="250dp"
         android:background="@color/my_blue"
         android:gravity="center"
         android:onClick="TakePicture"
@@ -19,13 +19,6 @@
         android:textAppearance="?android:textAppearanceLarge" />
 
 
-    <ImageView
-        android:id="@+id/image_viewer"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="100dp"
-        android:background="@color/my_blue" />
 
 
 </FrameLayout>

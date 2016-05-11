@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import database.DatabaseHandler;
 import database.Patient;
@@ -32,6 +34,9 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
     String firstName;
     String lastName;
     int date;
+
+    Random randomGenerator = new Random();
+    int patientID;
 
     int month_x, day_x;
     int year_x = 2000;
@@ -51,6 +56,10 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         Intent intent = getIntent();
         Bitmap bitmap = intent.getParcelableExtra("CameraImage");
         photo = bitmap;
+
+        patientID = randomGenerator.nextInt(1000000000);
+
+        Log.d("ID: ", "" + patientID);
 
         showDialogOnButtonClick();
 
@@ -108,15 +117,17 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
-            dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
+            dbHandler.insertDataPatients(new Patient(patientID, firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
 
+        //int nextID = dbHandler.getNextID();
 
         Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
         intent.putExtra("CameraImage", photo);
+        intent.putExtra("patientID", patientID);
         startActivity(intent);
 
     }

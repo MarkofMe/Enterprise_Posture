@@ -40,7 +40,6 @@ public class Main_Menu_Activity extends AppCompatActivity {
         setContentView(activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(main_menu_toolbar);
         setSupportActionBar(toolbar);
-        imageView = (ImageView) findViewById(R.id.image_viewer);
 
 
         //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
