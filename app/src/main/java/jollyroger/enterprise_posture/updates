@@ -8,3 +8,8 @@ I've also created layouts for each of these activities.
 
 I've added a button to the camera fragment that will link to the camera activity, a bigger screen is better for taking pictures and plotting small points on an image.
 I've also added the storyboard to the drawable folder so you can get an idea of the route the user will take through the app.
+
+Joel - 10/05
+
+Fixing the date so that it shows in the format dd-MM-yyyy in the db frag. Attempting to store the dob as this in the db.
+Made the slide default to current month + day in the year 2000.
