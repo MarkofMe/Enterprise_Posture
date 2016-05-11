@@ -114,6 +114,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
 
+
         Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
         intent.putExtra("CameraImage", photo);
         startActivity(intent);

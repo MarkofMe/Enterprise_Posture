@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 
+import database.DatabaseHandler;
+
 import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 
 public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
+    DatabaseHandler dbHandler = new DatabaseHandler(this);
     Bitmap photo = null;
 
     @Override
