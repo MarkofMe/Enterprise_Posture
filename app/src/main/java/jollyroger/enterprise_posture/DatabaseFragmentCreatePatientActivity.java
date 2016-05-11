@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import database.DatabaseHandler;
@@ -28,7 +29,8 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
     int date;
 
 
-    int year_x, month_x, day_x;
+    int month_x, day_x;
+    int year_x = 2000;
     static final int DIALOG_ID = 0;
     Button btn;
 
