@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -29,8 +30,9 @@ PlotterActivity extends AppCompatActivity {
     ArrayList<ImageView> clickMarker;   // stores collection of markers.
     ArrayList<Point> markerPositions;   // stores the X and Y of the pointers.
 
-    static final int CAM_REQUEST = 1;
+    static final int CAM_REQUEST = 10;
     ImageView photo = null;
+    private ImageView ImageHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +58,7 @@ PlotterActivity extends AppCompatActivity {
         //root.addView(photo);
         //root.addView(photo, lp);
 
-
+        ImageHolder = (ImageView) findViewById(R.id.ImageHolder);
 
         setTouchPointListener();
 
@@ -69,55 +71,48 @@ PlotterActivity extends AppCompatActivity {
 
     public void setTouchPointListener() // method to handle displaying pointers when clicked.
     {
-        if(photo == null)
-        {
-            Toast.makeText(this, "No Picture Taken", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            root.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent e) {
-                    if (e.getAction() == MotionEvent.ACTION_UP)  // touch lifted (clicked and released),
-                    {
-                        // creating the image (pointer icon).
-                        ImageView newMarker = new ImageView(PlotterActivity.this);
-                        newMarker.setImageResource(R.drawable.markericon);
 
-                        // creating a relativeLayout LayoutParams object, to set Margins of object.
-                        RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        newMarker.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);  // Solves issue! - centre of image issue, allows the image to be centred when touched.
-                        //lp.setMargins((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2), 0, 0);    // setting margins of layoutParams to location touched.
-                        lp.leftMargin = (int) e.getX() - (newMarker.getMeasuredWidth() / 2);
-                        lp.topMargin = (int) e.getY() - (newMarker.getMeasuredHeight() / 2);
+        root.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent e) {
+                if (e.getAction() == MotionEvent.ACTION_UP)  // touch lifted (clicked and released),
+                {
+                    // creating the image (pointer icon).
+                    ImageView newMarker = new ImageView(PlotterActivity.this);
+                    newMarker.setImageResource(R.drawable.markericon);
 
-                        newMarker.setLayoutParams(lp);  // setting ImageView layoutParams to that set above.
-                        newMarker.setScaleType(ImageView.ScaleType.MATRIX); // Solves issue! - setting scale, to avoid the smaller image issue when clicking at the sides of the screen.
-                        root.addView(newMarker);       // adding newMarker to the RelativeLayout.
-                        clickMarker.add(newMarker);   // add marker to array, so it can be undone if needed.
+                    // creating a relativeLayout LayoutParams object, to set Margins of object.
+                    RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    newMarker.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);  // Solves issue! - centre of image issue, allows the image to be centred when touched.
+                    //lp.setMargins((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2), 0, 0);    // setting margins of layoutParams to location touched.
+                    lp.leftMargin = (int) e.getX() - (newMarker.getMeasuredWidth() / 2);
+                    lp.topMargin = (int) e.getY() - (newMarker.getMeasuredHeight() / 2);
 
-                        // Points recording section.
-                        Point thisImage = new Point((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2));    // creating new Point object containing the location clicked (X, Y).
-                        markerPositions.add(thisImage); // adding created Point object to arrayList.
-                        // for testing purposes -Log.d("Points check", "The X is: " + thisImage.x  + " The Y is: " + thisImage.y + ". Also should match this X " + e.getX() + " and this: " + e.getY());
-                        return true;
-                    }
+                    newMarker.setLayoutParams(lp);  // setting ImageView layoutParams to that set above.
+                    newMarker.setScaleType(ImageView.ScaleType.MATRIX); // Solves issue! - setting scale, to avoid the smaller image issue when clicking at the sides of the screen.
+                    root.addView(newMarker);       // adding newMarker to the RelativeLayout.
+                    clickMarker.add(newMarker);   // add marker to array, so it can be undone if needed.
+
+                    // Points recording section.
+                    Point thisImage = new Point((int) e.getX() - (newMarker.getMeasuredWidth() / 2), (int) e.getY() - (newMarker.getMeasuredHeight() / 2));    // creating new Point object containing the location clicked (X, Y).
+                    markerPositions.add(thisImage); // adding created Point object to arrayList.
+                    // for testing purposes -Log.d("Points check", "The X is: " + thisImage.x  + " The Y is: " + thisImage.y + ". Also should match this X " + e.getX() + " and this: " + e.getY());
                     return true;
                 }
-            });
-        }
+                return true;
+            }
+        });
+
     }
 
     // method to handle button functionality when clicked.
     // android:onClick="onBtnClicked" registered for undo_button in XML section. can now use this method to handle clicks to "Undo" button.
-    public void onBtnClicked(View v)
-    {
-        switch (v.getId())
-        {
+    public void onBtnClicked(View v) {
+        switch (v.getId()) {
             case R.id.undo_button:
 
                 // if arrayList is not null and not empty, as well as markerPositions being instantiated and not being empty (i.e points added to this collection, also from onTouchEvent method.
-                if ((clickMarker != null && !clickMarker.isEmpty()) && (markerPositions != null && !clickMarker.isEmpty()))
-                {
+                if ((clickMarker != null && !clickMarker.isEmpty()) && (markerPositions != null && !clickMarker.isEmpty())) {
                     // deleting marker from screen view and arrayList.
                     ImageView delThisMarker = clickMarker.get((clickMarker.size() - 1));    // get the last in the list (i.e the current most recent marker).
                     root.removeView(delThisMarker); // remove this from the view.
@@ -132,15 +127,9 @@ PlotterActivity extends AppCompatActivity {
             case R.id.submit_button:
 
 
-
-
-
-
                 // continue on to calculation page (needs implementing).
 
                 // also - write imageView stored in here, markerPositions (array), and the returned data to the database.
-
-
 
 
                 break;
@@ -155,5 +144,18 @@ PlotterActivity extends AppCompatActivity {
         //File file = getFile();
         //camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
         startActivityForResult(camera_intent, CAM_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == CAM_REQUEST) {
+                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                ImageHolder.setImageBitmap(cameraImage);
+            }
+        }
+
     }
 }
