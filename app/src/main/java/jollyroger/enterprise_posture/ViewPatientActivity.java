@@ -34,8 +34,6 @@ public class ViewPatientActivity extends Activity {
         TextView lastName = (TextView) findViewById(R.id.viewLastName);
         TextView dob = (TextView) findViewById(R.id.viewDob);
         TextView gender = (TextView) findViewById(R.id.viewGender);
-        CheckBox checkBox = (CheckBox) findViewById(R.id.viewCheckBox);
-        checkBox.setClickable(false);
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
@@ -43,15 +41,8 @@ public class ViewPatientActivity extends Activity {
         lastName.setText(p.getSurName());
         dob.setText(formatter.format(p.getDoB()));
 
-        Log.d("gender", p.getGender());
-
         gender.setText(p.getGender());
 
-        if (p.getActive() == 1) {
-            checkBox.setChecked(true);
-        } else {
-            checkBox.setChecked(false);
-        }
     }
 
     public void EditPatient(View v) {

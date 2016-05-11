@@ -86,6 +86,20 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/txtViewGender" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete patient"
+            android:onClick="DeletePatient"
+            android:id="@+id/deletePatientBtn"
+            android:layout_marginTop="52dp"
+            android:layout_below="@+id/genderSpinner"
+            android:layout_alignStart="@+id/txtViewGender"
+            android:background="@color/my_blue"
+            android:layout_alignEnd="@+id/addPatientDOB"
+            android:visibility="invisible" />
+
+
     </RelativeLayout>
 
     <Button

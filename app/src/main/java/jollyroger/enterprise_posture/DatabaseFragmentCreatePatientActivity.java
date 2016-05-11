@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -62,6 +63,10 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         if ( getIntent().getExtras() != null){
             edit = true;
 
+            //Set delete button to visible
+            Button deleteButton = (Button) findViewById(R.id.deletePatientBtn);
+            deleteButton.setVisibility(View.VISIBLE);
+
             //Change 'add patient' button to 'update patient'
             Button btnAdd = (Button)findViewById(R.id.editOrAddPatientBtn);
             btnAdd.setText("Update Patient");
@@ -70,7 +75,6 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
             Bundle data = getIntent().getExtras();
             Patient p = data.getParcelable("patient");
             patientId = p.getPatientID();
-
 
             editP = p;
 
@@ -81,7 +85,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
             firstName.setText(p.getFirstName());
             lastName.setText(p.getSurName());
 
-
+            //Set gender in dropdown menu
             if (p.getGender().equals("Male")) {
                 gender.setSelection(0);
             } else if (p.getGender().equals("Female")) {
@@ -150,15 +154,11 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);
         Spinner gender = (Spinner) findViewById(R.id.genderSpinner);
 
-        //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
-
-        Log.d("Edit", "true");
-
         //If editing and not creating, update db, else add new value to db.
+        //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (edit == true) {
             dbHandler.updatePatients(new Patient(patientId, firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x -1, day_x), gender.getSelectedItem().toString(), 1));
-            Log.d("Edit", "true");
             finish();
         } else if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(),
@@ -167,6 +167,17 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void DeletePatient(View v) {
+        //Grab text from the text fields
+        EditText firstName = (EditText) findViewById(R.id.firstNameInput);
+        EditText lastName = (EditText) findViewById(R.id.lastNameInput);
+        Spinner gender = (Spinner) findViewById(R.id.genderSpinner);
+
+        dbHandler.updatePatients(new Patient(patientId, firstName.getText().toString(), lastName.getText().toString(),
+                new Date(year_x - 1900, month_x -1, day_x), gender.getSelectedItem().toString(), 0));
+        finish();
     }
 
     @Override
