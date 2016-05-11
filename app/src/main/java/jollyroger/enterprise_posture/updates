@@ -20,3 +20,4 @@ Todo
 Add button to give option to show all "soft" deleted patients.
 Search bar for patients.
 Sort out date formatting, currently the db stores it as "EEE MMM dd HH:mm:ss Z yyyy" and i convert/format it each time i want to use. Make db store as dd-MM-yyyy instead.
+Sort out toolbar for edit, create and add patients. They are messed up atm.
