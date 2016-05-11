@@ -49,6 +49,35 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
+        //If Edit patient not create patient.
+        if ( getIntent().getExtras() != null){
+            Bundle data = getIntent().getExtras();
+            Patient p = data.getParcelable("Patient");
+
+            Log.d("Create or edit", "Editing not creating");
+
+            EditText firstName = (EditText) findViewById(R.id.firstNameInput);
+            EditText lastName = (EditText) findViewById(R.id.lastNameInput);
+            Spinner gender = (Spinner) findViewById(R.id.genderSpinner);
+            firstName.setText(p.getFirstName());
+            lastName.setText(p.getSurName());
+
+            if (p.getGender().equals("Male")) {
+                gender.setSelection(0);
+            } else if (p.getGender().equals("Female")) {
+                gender.setSelection(1);
+            } else if (p.getGender().equals("Other")) {
+                gender.setSelection(2);
+            } else {
+                gender.setSelection(3);
+            }
+
+            Date dob = p.getDoB();
+
+        } else {
+            Log.d("Create or edit", "creating not Editing");
+        }
+
     }
 
     public void showDialogOnButtonClick() {
