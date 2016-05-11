@@ -41,7 +41,7 @@ public class ListviewCursorAdapter extends CursorAdapter {
         String strName = cursor.getString(cursor.getColumnIndexOrThrow("FirstName")) + " " + cursor.getString(cursor.getColumnIndexOrThrow("Surname"));
         String strDob = cursor.getString(cursor.getColumnIndexOrThrow("DoB"));
 
-        Log.d("Into to dob", strDob);
+        //Log.d("Into to dob", strDob);
 
         //Convert date in the DB into a more readable format.
         SimpleDateFormat readFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
@@ -58,10 +58,10 @@ public class ListviewCursorAdapter extends CursorAdapter {
                 dob.setText("Dob: " + d);
             }
         } catch (ParseException e) {
-            e.printStackTrace();
+            dob.setText(strDob);
         }
 
-        fullName.setText(strName);
+        fullName.setText("  " +strName);
     }
 
 }

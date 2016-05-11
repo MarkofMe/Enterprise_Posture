@@ -80,6 +80,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DeciderActivity" />
         </activity>
+        <activity
+            android:name=".ViewPatientActivity"
+            android:label="View Patient Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for

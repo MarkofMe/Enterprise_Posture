@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
@@ -151,6 +152,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_Active, patient.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id}); //queries by finding the field based on id
+        return true;
+    }
+
+    // Updates a field based on their ID
+    public boolean updatePatients(Patient p) {
+        ContentValues values = new ContentValues();
+        values.put(PT_ID, p.getPatientID());
+        values.put(PT_FIRSTNAME, p.getFirstName());
+        values.put(PT_SURNAME, p.getSurName());
+        values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
+        values.put(PT_GENDER, p.getGender());
+        values.put(PT_Active, p.getActive());
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.update(Table_Patients, values, "_id = ?", new String[]{Integer.toString(p.getPatientID())}); //queries by finding the field based on id
         return true;
     }
 
