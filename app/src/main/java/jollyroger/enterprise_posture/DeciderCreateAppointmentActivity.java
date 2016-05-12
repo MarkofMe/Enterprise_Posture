@@ -40,7 +40,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         pID = pid;
 
         //Toast.makeText(this, pid, Toast.LENGTH_SHORT).show();
-        Log.d("ID: ", ""+pid);
+        Log.d("ID: ", "" + pid);
 
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);

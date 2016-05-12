@@ -58,8 +58,6 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         photo = bitmap;
 
 
-
-
         showDialogOnButtonClick();
 
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -127,8 +125,8 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         photo.compress(Bitmap.CompressFormat.PNG, 50, bs);
 
         Bundle extras = new Bundle();
-        extras.putByteArray("CameraImage",bs.toByteArray());
-        extras.putInt("patientID",patientID);
+        extras.putByteArray("CameraImage", bs.toByteArray());
+        extras.putInt("patientID", patientID);
         intent.putExtras(extras);
         startActivity(intent);
 

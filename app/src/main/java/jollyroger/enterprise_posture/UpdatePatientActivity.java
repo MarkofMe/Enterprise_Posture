@@ -50,8 +50,6 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-
         //Get patient opbject to update.
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
