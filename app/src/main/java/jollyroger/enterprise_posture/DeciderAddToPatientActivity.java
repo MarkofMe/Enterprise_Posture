@@ -38,20 +38,10 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        populateListView();
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View v = inflater.inflate(R.layout.activity_decider_add_to_patient, container, false);
-
-        populateListView(v);
-
-        return v;
-    }
-
-    private void populateListView(View v) {
+    private void populateListView() {
 
         DatabaseHandler dbHandler = new DatabaseHandler(this);
 
@@ -59,7 +49,7 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
 
-        final ListView lv = (ListView) v.findViewById(R.id.listview_patients);
+        final ListView lv = (ListView) findViewById(R.id.listview_add_to_patients);
         lv.setClickable(true);
 
         ListviewCursorAdapter lvAdapter = new ListviewCursorAdapter(this, cursor);

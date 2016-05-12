@@ -19,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -35,7 +36,6 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
     String lastName;
     int date;
 
-    Random randomGenerator = new Random();
     int patientID;
 
     int month_x, day_x;
@@ -57,9 +57,8 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         Bitmap bitmap = intent.getParcelableExtra("CameraImage");
         photo = bitmap;
 
-        patientID = randomGenerator.nextInt(1000000000);
 
-        Log.d("ID: ", "" + patientID);
+
 
         showDialogOnButtonClick();
 
@@ -113,7 +112,6 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         EditText lastName = (EditText) findViewById(R.id.deciderlastNameInput);
         Spinner gender = (Spinner) findViewById(R.id.decidergenderSpinner);
 
-        Log.d("Gender", gender.getSelectedItem().toString());
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
@@ -122,12 +120,16 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
-
-        //int nextID = dbHandler.getNextID();
+        Log.d("ID: ", "" + patientID);
 
         Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
-        intent.putExtra("CameraImage", photo);
-        intent.putExtra("patientID", patientID);
+        ByteArrayOutputStream bs = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.PNG, 50, bs);
+
+        Bundle extras = new Bundle();
+        extras.putByteArray("CameraImage",bs.toByteArray());
+        extras.putInt("patientID",patientID);
+        intent.putExtras(extras);
         startActivity(intent);
 
     }
