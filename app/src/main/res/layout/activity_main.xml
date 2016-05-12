@@ -31,7 +31,6 @@
         android:contentDescription="@string/jolly_roger_presents" />
 
 
-
     <Button
         android:id="@+id/welcomeButton"
         android:layout_width="wrap_content"

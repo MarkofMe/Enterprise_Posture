@@ -52,7 +52,7 @@ public class Patient implements Parcelable {
         try {
             DoB = dateFormat.parse(strDob);
         } catch (ParseException e) {
-            DoB = new Date(2000,1,1);
+            DoB = new Date(2000, 1, 1);
         }
         Gender = in.readString();
         Active = in.readInt();
@@ -77,7 +77,7 @@ public class Patient implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringArray(new String[] {"" + this.PatientID, this.FirstName, this.SurName,"" + this.DoB, this.Gender,"" + this.Active});
+        dest.writeStringArray(new String[]{"" + this.PatientID, this.FirstName, this.SurName, "" + this.DoB, this.Gender, "" + this.Active});
     }
 
     public int getPatientID() {

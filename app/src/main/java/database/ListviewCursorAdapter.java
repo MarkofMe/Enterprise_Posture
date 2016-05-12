@@ -61,7 +61,7 @@ public class ListviewCursorAdapter extends CursorAdapter {
             dob.setText(strDob);
         }
 
-        fullName.setText("  " +strName);
+        fullName.setText("  " + strName);
     }
 
 }

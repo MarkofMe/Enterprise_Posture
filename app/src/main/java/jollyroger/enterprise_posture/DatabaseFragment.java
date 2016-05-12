@@ -74,7 +74,7 @@ public class DatabaseFragment extends Fragment {
                     e.printStackTrace();
                 }
 
-                Patient p = new Patient(s.getInt(0), s.getString(1), s.getString(2), d , s.getString(4), s.getInt(5));
+                Patient p = new Patient(s.getInt(0), s.getString(1), s.getString(2), d, s.getString(4), s.getInt(5));
 
                 Intent intent = new Intent(getContext(), ViewPatientActivity.class);
                 intent.putExtra("patient", p);

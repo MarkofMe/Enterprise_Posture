@@ -104,7 +104,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Adds data to the patients table
     public boolean insertDataPatients() {
         ContentValues values = new ContentValues();
-        values.put(PT_ID, patient.getPatientID());
         values.put(PT_FIRSTNAME, patient.getFirstName());
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
@@ -120,7 +119,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public boolean insertDataPatients(Patient p) {
         ContentValues values = new ContentValues();
-        values.put(PT_ID, patient.getPatientID());
         values.put(PT_FIRSTNAME, p.getFirstName());
         values.put(PT_SURNAME, p.getSurName());
         values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable

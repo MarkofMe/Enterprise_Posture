@@ -30,7 +30,7 @@ public class ViewPatientActivity extends Activity {
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
-        Log.d("PatientID: ", ""+ p.getPatientID());
+        Log.d("PatientID: ", "" + p.getPatientID());
         TextView firstName = (TextView) findViewById(R.id.viewFirstName);
         TextView lastName = (TextView) findViewById(R.id.viewLastName);
         TextView dob = (TextView) findViewById(R.id.viewDob);
