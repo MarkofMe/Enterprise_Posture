@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true">
 
     <include
-        android:id="@+id/add_to_patient_toolbar"
+        android:id="@+id/View_Patient_toolbar"
         layout="@layout/app_bar" />
 
 

@@ -57,21 +57,21 @@
             android:label="Add or Create">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main_Menu_Activity" />
+                android:value=".PlotterActivity" />
         </activity>
         <activity
             android:name=".AddToPatientActivity"
             android:label="Add">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main_Menu_Activity" />
+                android:value=".DeciderActivity" />
         </activity>
         <activity
             android:name=".DeciderCreatePatientActivity"
             android:label="Create">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Main_Menu_Activity" />
+                android:value=".DeciderActivity" />
         </activity>
         <activity
             android:name=".DeciderCreateAppointmentActivity"
@@ -82,10 +82,17 @@
         </activity>
         <activity
             android:name=".ViewPatientActivity"
-            android:label="View Patient Activity">
+            android:label="Patient Profile">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".UpdatePatientActivity"
+            android:label="Edit Patient">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewPatientActivity" />
         </activity>
 
         <!--

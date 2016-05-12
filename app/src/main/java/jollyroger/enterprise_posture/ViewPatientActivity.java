@@ -3,19 +3,19 @@ package jollyroger.enterprise_posture;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
 
 import java.text.SimpleDateFormat;
 
 import database.Patient;
 
-/**
- * Created by hj on 11/05/2016.
- */
-public class ViewPatientActivity extends Activity {
+
+public class ViewPatientActivity extends AppCompatActivity {
 
     public static Activity act;
 
@@ -26,6 +26,12 @@ public class ViewPatientActivity extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_patient);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.View_Patient_toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
@@ -44,13 +50,14 @@ public class ViewPatientActivity extends Activity {
 
         gender.setText(p.getGender());
 
+
     }
 
     public void EditPatient(View v) {
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
-        Intent intent = new Intent(getApplicationContext(), DatabaseFragmentCreatePatientActivity.class);
+        Intent intent = new Intent(getApplicationContext(), UpdatePatientActivity.class);
         intent.putExtra("patient", p);
         startActivity(intent);
     }
