@@ -10,12 +10,11 @@
         layout="@layout/app_bar" />
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <ListView
+        android:id="@+id/listview_add_to_patients"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_gravity="top" />
 
 
 </RelativeLayout>

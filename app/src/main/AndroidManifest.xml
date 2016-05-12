@@ -60,7 +60,7 @@
                 android:value=".PlotterActivity" />
         </activity>
         <activity
-            android:name=".AddToPatientActivity"
+            android:name=".DeciderAddToPatientActivity"
             android:label="Add">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
