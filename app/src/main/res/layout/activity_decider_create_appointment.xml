@@ -6,6 +6,7 @@
     android:fitsSystemWindows="true"
     tools:context=".DeciderCreateAppointmentActivity">
 
+
     <include
         android:id="@+id/decider_toolbar"
         layout="@layout/app_bar" />

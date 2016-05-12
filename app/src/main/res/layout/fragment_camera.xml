@@ -18,5 +18,4 @@
         android:text="@string/take_picture"
         android:textAppearance="?android:textAppearanceLarge" />
 
-
 </FrameLayout>

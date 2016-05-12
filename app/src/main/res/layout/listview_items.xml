@@ -19,5 +19,4 @@
         android:text="dob"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-
 </LinearLayout>

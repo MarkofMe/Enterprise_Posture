@@ -8,5 +8,4 @@
     android:theme="@style/CustomToolBarTheme"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-
 </android.support.v7.widget.Toolbar>

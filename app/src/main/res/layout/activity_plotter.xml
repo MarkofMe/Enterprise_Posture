@@ -55,5 +55,4 @@
             android:text="@string/submit" />
     </RelativeLayout>
 
-
 </RelativeLayout>

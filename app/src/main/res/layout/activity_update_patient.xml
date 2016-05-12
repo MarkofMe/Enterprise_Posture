@@ -96,7 +96,6 @@
             android:layout_below="@+id/editgenderSpinner"
             android:layout_alignStart="@+id/editPatientDOB" />
 
-
     </RelativeLayout>
 
     <Button

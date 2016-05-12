@@ -9,7 +9,6 @@
         android:id="@+id/camera_toolbar"
         layout="@layout/app_bar" />
 
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"

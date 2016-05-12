@@ -67,5 +67,4 @@
         android:text="Lead Designer: Mark Leoanrd"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
-
 </RelativeLayout>

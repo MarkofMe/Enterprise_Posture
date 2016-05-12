@@ -23,5 +23,4 @@
         android:onClick="AddNewPatient"
         android:text="Add New Patient" />
 
-
 </FrameLayout>
