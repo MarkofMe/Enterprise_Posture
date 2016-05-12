@@ -160,19 +160,6 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
     public void TakePicture(View view) {
 
-//        Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        File file = getFile();
-//        camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
-//        startActivityForResult(camera_intent, CAM_REQUEST);
-
-//        imageView.buildDrawingCache();
-//        Bitmap image= imageView.getDrawingCache();
-//
-//        Bundle extras = new Bundle();
-//        extras.putParcelable("imagebitmap", image);
-//        intent.putExtras(extras);
-//        startActivity(intent);
-
         startActivity(new Intent(this, PlotterActivity.class));
 
 
@@ -181,31 +168,5 @@ public class Main_Menu_Activity extends AppCompatActivity {
 
     public void AddNewPatient(View view) {
         startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
-    }
-
-    private File getFile() {
-        File folder = new File("sdcard/camera_app");
-
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-
-        File image_file = new File(folder, "cam_image.bmp");
-
-        return image_file;
-    }
-
-    public static String path;
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        //File file = getFile();
-        path = "sdcard/camera_app/cam_image.bmp";
-        imageView.setImageDrawable(Drawable.createFromPath(path));
-        //Intent intent = new Intent(this, PlotterActivity.class);
-        //intent.putExtra(path, Uri.fromFile(file));
-        //startActivity(intent);
-
     }
 }

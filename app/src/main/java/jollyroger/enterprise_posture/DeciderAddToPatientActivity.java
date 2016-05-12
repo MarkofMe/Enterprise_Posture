@@ -1,18 +1,14 @@
 package jollyroger.enterprise_posture;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,8 +17,6 @@ import java.util.Date;
 import database.DatabaseHandler;
 import database.ListviewCursorAdapter;
 import database.Patient;
-
-import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 
 public class DeciderAddToPatientActivity extends AppCompatActivity {
 
