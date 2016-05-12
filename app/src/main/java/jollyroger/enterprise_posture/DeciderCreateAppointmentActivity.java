@@ -57,8 +57,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         dropdown.setAdapter(adapter);
     }
 
-    public void AddAppointment(View view)
-    {
+    public void AddAppointment(View view) {
         EditText appointmentNo = (EditText) findViewById(R.id.appointmentNumber);
         Spinner goodOrBadSpinner = (Spinner) findViewById(R.id.goodOrBadSpinner);
 
