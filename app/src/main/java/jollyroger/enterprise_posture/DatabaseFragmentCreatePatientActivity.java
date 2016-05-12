@@ -2,6 +2,7 @@ package jollyroger.enterprise_posture;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -37,6 +38,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         if (ViewPatientActivity.act != null) {
             ViewPatientActivity.act.finish();

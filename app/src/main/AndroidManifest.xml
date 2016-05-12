@@ -17,7 +17,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,70 +28,80 @@
         </activity>
         <activity
             android:name=".Main_Menu_Activity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="Camera">
+            android:label="Camera"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
         <activity
             android:name=".DatabaseFragmentCreatePatientActivity"
-            android:label="Create Patient">
+            android:label="Create Patient"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
         <activity
             android:name=".PlotterActivity"
-            android:label="Plot Points">
+            android:label="Plot Points"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
         <activity
             android:name=".DeciderActivity"
-            android:label="Add or Create">
+            android:label="Add or Create"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".PlotterActivity" />
         </activity>
         <activity
             android:name=".DeciderAddToPatientActivity"
-            android:label="Add">
+            android:label="Add"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DeciderActivity" />
         </activity>
         <activity
             android:name=".DeciderCreatePatientActivity"
-            android:label="Create">
+            android:label="Create"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DeciderActivity" />
         </activity>
         <activity
             android:name=".DeciderCreateAppointmentActivity"
-            android:label="Create Appointment">
+            android:label="Create Appointment"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DeciderActivity" />
         </activity>
         <activity
             android:name=".ViewPatientActivity"
-            android:label="Patient Profile">
+            android:label="Patient Profile"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
         <activity
             android:name=".UpdatePatientActivity"
-            android:label="Edit Patient">
+            android:label="Edit Patient"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ViewPatientActivity" />
