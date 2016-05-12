@@ -98,7 +98,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
     };
 
     //On button press of add patient
-    public void Add(View view) {
+    public void AddDatabasePatient(View view) {
         //Grab text from the text fields
         EditText firstName = (EditText) findViewById(R.id.firstNameInput);
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);

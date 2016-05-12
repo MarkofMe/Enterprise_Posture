@@ -1,5 +1,6 @@
 package database;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
 import java.util.Date;
@@ -9,7 +10,7 @@ public class Appointment {
     private int PatientID; // Foreign key
     private int AppointmentNo;
     private Date AppointmentDate;
-    private Image PatientImage;
+    private Bitmap PatientImage;
     private String Diagnostic;
 
     //Constructors
@@ -17,8 +18,7 @@ public class Appointment {
 
     }
 
-    public Appointment(int appointmentID, int patientID, int appointmentNo, Date appointmentDate, Image patientImage, String diagnostic) {
-        this.AppointmentID = appointmentID;
+    public Appointment(int patientID, int appointmentNo, Date appointmentDate, Bitmap patientImage, String diagnostic) {
         this.PatientID = patientID;
         this.AppointmentNo = appointmentNo;
         this.AppointmentDate = appointmentDate;
@@ -26,13 +26,6 @@ public class Appointment {
         this.Diagnostic = diagnostic;
     }
 
-    public int getAppointmentID() {
-        return AppointmentID;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        AppointmentID = appointmentID;
-    }
 
     public int getPatientID() {
         return PatientID;
@@ -58,11 +51,11 @@ public class Appointment {
         AppointmentDate = appointmentDate;
     }
 
-    public Image getPatientImage() {
+    public Bitmap getPatientImage() {
         return PatientImage;
     }
 
-    public void setPatientImage(Image patientImage) {
+    public void setPatientImage(Bitmap patientImage) {
         PatientImage = patientImage;
     }
 

@@ -106,7 +106,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
     };
 
     //On button press of add patient
-    public void Add(View view) {
+    public void AddDeciderPatient(View view) {
         //Grab text from the text fields
         EditText firstName = (EditText) findViewById(R.id.deciderfirstNameInput);
         EditText lastName = (EditText) findViewById(R.id.deciderlastNameInput);

@@ -71,11 +71,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + AP_PATIENTID
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTNO
-                + " TEXT NOT NULL, "
+                + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
                 + AP_PATIENTIMAGE
-                + " TEXT NOT NULL, "
+                + " BLOB, "
                 + AP_DIAGNOSTIC
                 + " TEXT NOT NULL, "
                 + " FOREIGN KEY(" + AP_PATIENTID + ")REFERENCES " + Table_Patients + "(" + PT_ID + "));";
@@ -134,7 +134,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Adds data to the appointments table
-    public boolean insertDataAppointments() {
+    public boolean insertDataAppointments(Appointment appointment) {
         ContentValues values = new ContentValues();
         values.put(AP_PATIENTID, appointment.getPatientID());
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
@@ -142,7 +142,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
         SQLiteDatabase db = this.getWritableDatabase();
-        long result = db.insert(Table_Patients, null, values);
+        long result = db.insert(Table_Appointments, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
             return false;
         else
@@ -180,7 +180,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Updates a field based on their ID
     public boolean updateAppointments(String id) {
         ContentValues values = new ContentValues();
-        values.put(AP_ID, appointment.getAppointmentID());
+        //values.put(AP_ID, appointment.getAppointmentID());
         values.put(AP_PATIENTID, appointment.getPatientID());
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate()));

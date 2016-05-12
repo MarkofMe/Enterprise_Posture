@@ -23,8 +23,7 @@ import java.util.ArrayList;
 
 import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
 
-public class
-PlotterActivity extends AppCompatActivity {
+public class PlotterActivity extends AppCompatActivity {
 
     ViewGroup root; // to soon be view of id "rootXML", which is the "relativeLayout" reference id.
     ArrayList<ImageView> clickMarker;   // stores collection of markers.
@@ -131,6 +130,7 @@ PlotterActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, DeciderActivity.class);
                 intent.putExtra("CameraImage", photo);
                 startActivity(intent);
+
                 // continue on to calculation page (needs implementing).
 
                 // also - write imageView stored in here, markerPositions (array), and the returned data to the database.

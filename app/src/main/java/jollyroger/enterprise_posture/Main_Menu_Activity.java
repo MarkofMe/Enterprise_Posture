@@ -161,10 +161,7 @@ public class Main_Menu_Activity extends AppCompatActivity {
     }
 
     public void TakePicture(View view) {
-
         startActivity(new Intent(this, PlotterActivity.class));
-
-
     }
 
 

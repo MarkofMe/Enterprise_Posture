@@ -61,11 +61,12 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
     public void AddAppointment(View view) {
         EditText appointmentNo = (EditText) findViewById(R.id.appointmentNumber);
+        int aNo = Integer.parseInt(appointmentNo.getText().toString());
         Spinner goodOrBadSpinner = (Spinner) findViewById(R.id.goodOrBadSpinner);
 
         if (!appointmentNo.getText().toString().matches("")) {
-            //dbHandler.insertDataAppointments(new Appointment(pID, appointmentNo, new Date(), photo, goodOrBadSpinner));
-            //finish();
+            dbHandler.insertDataAppointments(new Appointment(pID, aNo, new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
+            finish();
 
             startActivity(new Intent(this, Main_Menu_Activity.class));
         } else { //One of the fields was blank.

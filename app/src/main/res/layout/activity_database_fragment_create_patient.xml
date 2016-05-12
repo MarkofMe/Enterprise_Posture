@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
-        android:onClick="Add"
+        android:onClick="AddDatabasePatient"
         android:text="@string/add_patient" />
 
 </RelativeLayout>
