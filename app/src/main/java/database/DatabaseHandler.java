@@ -52,7 +52,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_PATIENTS_TABLE = "CREATE TABLE "
                 + Table_Patients
                 + "(" + PT_ID
-                + " INTEGER PRIMARY KEY, "
+                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + PT_FIRSTNAME
                 + " TEXT NOT NULL, "
                 + PT_SURNAME
@@ -68,7 +68,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
                 + "(" + AP_ID
-                + " INTEGER PRIMARY KEY, "
+                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + AP_PATIENTID
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTNO
