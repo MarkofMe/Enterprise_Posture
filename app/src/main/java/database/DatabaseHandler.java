@@ -76,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
                 + AP_PATIENTIMAGE
-                + " BLOB NOT NULL, "
+                + " BLOB, "
                 + AP_DIAGNOSTIC
                 + " TEXT NOT NULL, " +
                 "FOREIGN KEY(" + AP_PATIENTID + ") REFERENCES " + Table_Patients + "(" + PT_ID + "));";
