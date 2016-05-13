@@ -27,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Images Table Columns names
     private static final String PI_IMAGE = "Image";
     private static final String PI_APPOINTMENTNO = "AppointmentNo";
+    private static final String PI_POINTS = "Points";
 
     // Patients Table Columns names
     private static final String PT_ID = "_id";
@@ -88,6 +89,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + Table_Images
                 + "(" + PI_IMAGE
                 + " BLOB, "
+                + PI_POINTS
+                + " TEXT, "
                 + PI_APPOINTMENTNO
                 + " INTEGER NOT NULL, " +
                 "FOREIGN KEY(" + PI_APPOINTMENTNO + ") REFERENCES " + Table_Appointments + "(" + AP_ID + "));";
