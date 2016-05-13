@@ -138,6 +138,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //        return c.getCount();
 //    }
 
+    public boolean insertDataImage(AppointmentImage image) {
+        ContentValues values = new ContentValues();
+        values.put(PI_IMAGE, image.getImage());
+        values.put(PI_POINTS, image.getPoints());
+        values.put(PI_APPOINTMENTNO, image.getAppointmentNo());
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.insert(Table_Images, null, values);
+        if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
+            return false;
+        else
+            return true;
+    }
+
     // Adds data to the patients table
     public boolean insertDataPatients() {
         ContentValues values = new ContentValues();
