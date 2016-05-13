@@ -84,6 +84,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_APPOINTMENTS_TABLE);
     }
 
+    //Converts input int array into a string, to be used for storage of plotter points in the db.
+    public String intToString(int[] ints) {
+        StringBuilder builder = new StringBuilder();
+        for (int i : ints) {
+            if (builder.length() > 0) builder.append(",");
+            builder.append("'").append(i).append("'");
+        }
+        return builder.toString();
+    }
+
+    //Converts the db's string of plotter points into an int[].
+    public int[] stringToInt(String ints) {
+        String[] s = ints.split(",");
+        int[] numbs = new int[s.length];
+        for (int i = 0; i < s.length; i++) {
+            numbs[i] = Integer.parseInt(s[i]);
+        }
+        return numbs;
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldNum, int newNum) {
         //Drop older table if exists and create fresh
