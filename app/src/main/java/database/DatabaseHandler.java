@@ -3,10 +3,8 @@ package database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -23,16 +21,23 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Appointments table name
     private static final String Table_Appointments = "Appointment";
 
+    //Images table name
+    private static final String Table_Images = "Images";
+
+    // Images Table Columns names
+    private static final String PI_IMAGE = "Image";
+    private static final String PI_APPOINTMENTNO = "AppointmentNo";
+
     // Patients Table Columns names
     private static final String PT_ID = "_id";
     private static final String PT_FIRSTNAME = "FirstName";
     private static final String PT_SURNAME = "Surname";
     private static final String PT_DOB = "DoB";
     private static final String PT_GENDER = "Gender";
-    private static final String PT_Active = "Active";
+    private static final String PT_ACTIVE = "Active";
 
     //Appointments Table Columns names
-    private static final String AP_ID = "_idd";
+    private static final String AP_ID = "_id";
     private static final String AP_PATIENTID = "PatientID";
     private static final String AP_APPOINTMENTNO = "AppointmentNo";
     private static final String AP_APPOINTMENTDATE = "AppointmentDate";
@@ -61,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + " TEXT NOT NULL, "
                 + PT_GENDER
                 + " TEXT NOT NULL, "
-                + PT_Active
+                + PT_ACTIVE
                 + " INTEGER NOT NULL );";
 
         db.execSQL("PRAGMA foreign_keys=ON;");
@@ -75,13 +80,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
-                + AP_PATIENTIMAGE
-                + " BLOB, "
                 + AP_DIAGNOSTIC
                 + " TEXT NOT NULL, " +
                 "FOREIGN KEY(" + AP_PATIENTID + ") REFERENCES " + Table_Patients + "(" + PT_ID + "));";
+
+        String CREATE_IMAGE_TABLE = "CREATE TABLE "
+                + Table_Images
+                + "(" + PI_IMAGE
+                + " BLOB, "
+                + PI_APPOINTMENTNO
+                + " INTEGER NOT NULL, " +
+                "FOREIGN KEY(" + PI_APPOINTMENTNO + ") REFERENCES " + Table_Appointments + "(" + AP_ID + "));";
         db.execSQL(CREATE_PATIENTS_TABLE);
         db.execSQL(CREATE_APPOINTMENTS_TABLE);
+        db.execSQL(CREATE_IMAGE_TABLE);
     }
 
     //Converts input int array into a string, to be used for storage of plotter points in the db.
@@ -130,7 +142,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
-        values.put(PT_Active, patient.getActive());
+        values.put(PT_ACTIVE, patient.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
@@ -145,7 +157,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, p.getSurName());
         values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
         values.put(PT_GENDER, p.getGender());
-        values.put(PT_Active, p.getActive());
+        values.put(PT_ACTIVE, p.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Patients, null, values);
         if (result == -1)// if the contents arent inserted db.insert returns -1, so this is a check for if the data is inserted
@@ -178,7 +190,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, patient.getSurName());
         values.put(PT_DOB, String.valueOf(patient.getDoB())); // because its a date variable
         values.put(PT_GENDER, patient.getGender());
-        values.put(PT_Active, patient.getActive());
+        values.put(PT_ACTIVE, patient.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id}); //queries by finding the field based on id
         return true;
@@ -192,7 +204,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(PT_SURNAME, p.getSurName());
         values.put(PT_DOB, String.valueOf(p.getDoB())); // because its a date variable
         values.put(PT_GENDER, p.getGender());
-        values.put(PT_Active, p.getActive());
+        values.put(PT_ACTIVE, p.getActive());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{Integer.toString(p.getPatientID())}); //queries by finding the field based on id
         return true;
