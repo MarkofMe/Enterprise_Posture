@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String PT_Active = "Active";
 
     //Appointments Table Columns names
-    private static final String AP_ID = "_id";
+    private static final String AP_ID = "_idd";
     private static final String AP_PATIENTID = "PatientID";
     private static final String AP_APPOINTMENTNO = "AppointmentNo";
     private static final String AP_APPOINTMENTDATE = "AppointmentDate";
@@ -51,8 +51,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_PATIENTS_TABLE = "CREATE TABLE "
                 + Table_Patients
-                + "(" + PT_ID//Make sure that this isn't an issue
-                + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + "(" + PT_ID
+                + " INTEGER PRIMARY KEY, "
                 + PT_FIRSTNAME
                 + " TEXT NOT NULL, "
                 + PT_SURNAME
@@ -62,12 +62,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_GENDER
                 + " TEXT NOT NULL, "
                 + PT_Active
-                + " INTEGER NOT NULL )";
+                + " INTEGER NOT NULL );";
 
+        db.execSQL("PRAGMA foreign_keys=ON;");
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
-                + "(" + AP_ID//Make sure that this isn't an issue
-                + " INTEGER PRIMARY AUTOINCREMENT, "
+                + "(" + AP_ID
+                + " INTEGER PRIMARY KEY, "
                 + AP_PATIENTID
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTNO
@@ -75,10 +76,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
                 + AP_PATIENTIMAGE
-                + " BLOB, "
+                + " BLOB NOT NULL, "
                 + AP_DIAGNOSTIC
-                + " TEXT NOT NULL, "
-                + " FOREIGN KEY(" + AP_PATIENTID + ")REFERENCES " + Table_Patients + "(" + PT_ID + "));";
+                + " TEXT NOT NULL, " +
+                "FOREIGN KEY(" + AP_PATIENTID + ") REFERENCES " + Table_Patients + "(" + PT_ID + "));";
         db.execSQL(CREATE_PATIENTS_TABLE);
         db.execSQL(CREATE_APPOINTMENTS_TABLE);
     }
