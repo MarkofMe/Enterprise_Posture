@@ -39,9 +39,8 @@ public class ViewPatientListviewCursorAdapter extends CursorAdapter {
         TextView postureResult = (TextView) view.findViewById(R.id.viewPostureResult);
         ImageView appointment_Imageholder = (ImageView) view.findViewById(R.id.viewAppointment_imageholder);
 
-        Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
+        //Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
 
-//        c.moveToFirst();
         appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
         appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
         postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));

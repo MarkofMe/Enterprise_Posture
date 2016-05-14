@@ -57,8 +57,4 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         ViewPatientListviewCursorAdapter lvAdapter = new ViewPatientListviewCursorAdapter(getBaseContext(), cursor);
         lv.setAdapter(lvAdapter);
     }
-
-
-    public void EditAppointment(View view) {
-    }
 }
