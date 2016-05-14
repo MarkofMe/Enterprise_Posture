@@ -56,7 +56,7 @@ public class ViewAppointmentActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
+        //Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
 
         c.moveToFirst();
         try {

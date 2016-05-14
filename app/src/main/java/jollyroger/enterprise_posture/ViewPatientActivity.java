@@ -58,8 +58,6 @@ public class ViewPatientActivity extends AppCompatActivity {
         } catch (NullPointerException e) {
             finish();
         }
-
-
     }
 
     public void EditPatient(View v) {
