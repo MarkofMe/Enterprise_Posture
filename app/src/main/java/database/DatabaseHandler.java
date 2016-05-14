@@ -132,7 +132,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Patients WHERE Active=1", null);
     }
 
-    public Cursor getAppointmetnsTable(String id) {
+    public Cursor getPatientAppointments(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM Appointments WHERE patientID=" + id, null);
     }

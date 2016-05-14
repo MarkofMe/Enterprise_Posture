@@ -40,6 +40,14 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         Patient p = data.getParcelable("patient");
         Appointment a = new Appointment();
 
+        //For mark, the cursor contains all the appointments for the patient p.
+        DatabaseHandler db = new DatabaseHandler(getBaseContext());
+        Cursor c = db.getPatientAppointments(p.getPatientID());
+
+        //Use this to grab specific columns, e.g.
+        String appDate = c.getString(c.getColumnIndexOrThrow("AppointmentDate"));
+        //Gets the appDate as a String (duh). Take the column name e.g "AppointmentDate" from the dbhandler at the top.
+
         Log.d("PatientID: ", "" + p.getPatientID());
         Log.d("PatientID: ", "" + a.getPatientID());
         TextView appointmentNumber = (TextView) findViewById(R.id.viewAppointmentNumber);
