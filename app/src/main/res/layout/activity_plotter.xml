@@ -30,6 +30,7 @@
             android:layout_alignTop="@+id/camera_Loader"
             android:background="@color/my_blue"
             android:onClick="onBtnClicked"
+            android:textColor="@color/textColour"
             android:text="@string/undo" />
 
         <Button
@@ -40,6 +41,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
             android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:onClick="OpenCamera"
             android:text="@string/open_camera" />
 
@@ -51,6 +53,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/camera_Loader"
             android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:onClick="onBtnClicked"
             android:text="@string/submit" />
     </RelativeLayout>

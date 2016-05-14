@@ -66,6 +66,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="200dp"
             android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:text="Add Date Of Birth" />
 
         <TextView
@@ -92,6 +93,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
+        android:textColor="@color/textColour"
         android:onClick="AddDeciderPatient"
         android:text="@string/add_patient" />
 

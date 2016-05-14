@@ -19,31 +19,31 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/viewFirstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
         android:layout_marginTop="68dp"
         android:text="John"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/viewFirstName" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="108dp"
         android:text="@string/last_name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/textView2" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/viewLastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
         android:layout_marginTop="108dp"
         android:text="Doe"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/viewLastName" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -54,13 +54,13 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/viewDob"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
         android:layout_marginTop="148dp"
         android:text="1/1/1992"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/viewDob" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,13 +71,24 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
+        android:id="@+id/viewGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="110dp"
         android:layout_marginTop="188dp"
         android:text="1/1/1992"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/viewGender" />
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/viewAppointment"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@color/my_blue"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="230dp"
+        android:text="View Appointment"
+        android:textColor="@color/textColour"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
         android:id="@+id/Edit_patient"
@@ -86,6 +97,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
         android:onClick="EditPatient"
+        android:textColor="@color/textColour"
         android:text="EDIT PATIENT DETAILS" />
 
 </RelativeLayout>

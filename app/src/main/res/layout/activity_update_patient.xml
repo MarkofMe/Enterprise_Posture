@@ -65,6 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="200dp"
+            android:textColor="@color/textColour"
             android:background="@color/my_blue"
             android:text="Add Date Of Birth" />
 
@@ -86,12 +87,13 @@
             android:layout_below="@+id/txtViewGender" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Delete patient"
             android:onClick="DeletePatient"
             android:id="@+id/editdeletePatientBtn"
             android:layout_marginTop="76dp"
+            android:textColor="@color/textColour"
             android:background="@color/my_blue"
             android:layout_below="@+id/editgenderSpinner"
             android:layout_alignStart="@+id/editPatientDOB" />
@@ -104,6 +106,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
+        android:textColor="@color/textColour"
         android:onClick="Edit"
         android:text="Edit Patient" />
 

@@ -60,6 +60,7 @@
         android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
         android:onClick="AddAppointment"
+        android:textColor="@color/textColour"
         android:text="@string/add_appointment" />
 
 </RelativeLayout>

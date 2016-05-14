@@ -16,6 +16,7 @@
         android:gravity="center"
         android:onClick="TakePicture"
         android:text="@string/take_picture"
+        android:textColor="@color/textColour"
         android:textAppearance="?android:textAppearanceLarge" />
 
 </FrameLayout>
