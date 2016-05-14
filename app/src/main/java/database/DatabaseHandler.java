@@ -79,6 +79,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTNO
                 + " INTEGER NOT NULL, "
+                + AP_PATIENTIMAGE
+                + " BLOB, "
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
                 + AP_DIAGNOSTIC
