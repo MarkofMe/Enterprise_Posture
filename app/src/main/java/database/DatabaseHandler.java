@@ -132,6 +132,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Patients WHERE Active=1", null);
     }
 
+    public Cursor getAppointmetnsTable(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM Appointments WHERE patientID", null);
+    }
+
 //    public int getNextID(){
 //        SQLiteDatabase db = this.getReadableDatabase();
 //        Cursor c = db.rawQuery("SELECT COUNT(_id) FROM Patients", null);

@@ -2,6 +2,7 @@ package jollyroger.enterprise_posture;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 
+import database.DatabaseHandler;
 import database.Patient;
 import database.Appointment;
 
