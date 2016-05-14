@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -140,9 +143,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Appointment WHERE patientID=" + id, null);
     }
 
-    public int getNextID(){
+    public int getNextPatientID(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Patients", null);
+        return c.getCount();
+    }
+
+    public int getNextAppointmentID(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Appointment", null);
         return c.getCount();
     }
 
@@ -196,7 +205,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_PATIENTID, appointment.getPatientID());
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate())); // because its a date variable
-        values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));
+        //Add photo to db
+        Bitmap photo = appointment.getPatientImage();
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+        byte[] bArray = bos.toByteArray();
+        values.put(AP_PATIENTIMAGE, bArray);
+        //
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.insert(Table_Appointments, null, values);

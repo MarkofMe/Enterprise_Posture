@@ -1,8 +1,10 @@
 package jollyroger.enterprise_posture;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,11 +12,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import database.Appointment;
 import database.DatabaseHandler;
 import database.ListviewCursorAdapter;
 import database.Patient;
@@ -43,8 +47,6 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         Cursor cursor = dbHandler.getPatientsTable();
 
-        //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
-
         final ListView lv = (ListView) findViewById(R.id.listview_add_to_patients);
         lv.setClickable(true);
 
@@ -70,12 +72,15 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
                 Patient p = new Patient(s.getInt(0), s.getString(1), s.getString(2), d, s.getString(4), s.getInt(5));
 
-                Log.d("Paient is: ", "" + p.getFirstName());
+                DatabaseHandler db = new DatabaseHandler(getBaseContext());
 
-//                Intent intent = new Intent(this, ViewPatientActivity.class);
-//                intent.putExtra("patient", p);
-//                startActivity(intent);
+                Intent intent = getIntent();
+                Bitmap bitmap = intent.getParcelableExtra("CameraImage");
+                db.insertDataAppointments(new Appointment
+                        (p.getPatientID(), db.getNextAppointmentID(), new Date(), bitmap, "Good" ));
 
+                Toast.makeText(getBaseContext(), "Appointment Added to patient: " + p.getFirstName() + " " + p.getSurName(), Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }

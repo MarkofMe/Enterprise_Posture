@@ -8,22 +8,18 @@ import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Date;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import database.DatabaseHandler;
 import database.Patient;
@@ -116,7 +112,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
-            patientID = dbHandler.getNextID();
+            patientID = dbHandler.getNextPatientID();
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();

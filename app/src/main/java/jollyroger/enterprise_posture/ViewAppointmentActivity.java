@@ -3,6 +3,7 @@ package jollyroger.enterprise_posture;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.sql.Blob;
 import java.text.SimpleDateFormat;
@@ -42,18 +44,11 @@ public class ViewAppointmentActivity extends AppCompatActivity {
 
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
-        //Appointment a = new Appointment();
 
         //For mark, the cursor contains all the appointments for the patient p.
         DatabaseHandler db = new DatabaseHandler(getBaseContext());
         Cursor c = db.getPatientAppointments(p.getPatientID());
 
-        //Use this to grab specific columns, e.g.
-        //String appDate = c.getString(c.getColumnIndexOrThrow("AppointmentDate"));
-        //Gets the appDate as a String (duh). Take the column name e.g "AppointmentDate" from the dbhandler at the top.
-
-//        Log.d("PatientID: ", "" + p.getPatientID());
-        //Log.d("PatientID: ", "" + a.getPatientID());
         TextView appointmentNumber = (TextView) findViewById(R.id.viewAppointmentNumber);
         TextView appointmentDate = (TextView) findViewById(R.id.viewAppointmentDate);
         TextView postureResult = (TextView) findViewById(R.id.viewPostureResult);
@@ -61,16 +56,20 @@ public class ViewAppointmentActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        //Log.d("App number", (DatabaseUtils.dumpCursorToString(c)));
-        //Log.d("App number", c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
+        Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
 
         c.moveToFirst();
-        appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
-        appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
-        postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
-        byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
-        Bitmap img = BitmapFactory.decodeByteArray(b,0, b.length);
-        appointment_Imageholder.setImageBitmap(img);
+        try {
+            appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
+            appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
+            postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
+            byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
+            Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
+            appointment_Imageholder.setImageBitmap(img);
+        } catch (CursorIndexOutOfBoundsException e) {
+            Toast.makeText(getBaseContext(), "No appointments exist", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     public void EditAppointment(View view) {

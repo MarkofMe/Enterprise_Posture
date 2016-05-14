@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 
@@ -38,7 +39,7 @@ public class ViewPatientActivity extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
-        Log.d("PatientID: ", "" + p.getPatientID());
+        //Log.d("PatientID: ", "" + p.getPatientID());
         TextView firstName = (TextView) findViewById(R.id.viewFirstName);
         TextView lastName = (TextView) findViewById(R.id.viewLastName);
         TextView dob = (TextView) findViewById(R.id.viewDob);
@@ -46,11 +47,17 @@ public class ViewPatientActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        firstName.setText(p.getFirstName());
-        lastName.setText(p.getSurName());
-        dob.setText(formatter.format(p.getDoB()));
+        //When using the back button to get to this class, the intent isn't used to create the class
+        //and thus p is null. Send back to the DB fragment instead.
+        try {
+            firstName.setText(p.getFirstName());
+            lastName.setText(p.getSurName());
+            dob.setText(formatter.format(p.getDoB()));
 
-        gender.setText(p.getGender());
+            gender.setText(p.getGender());
+        } catch (NullPointerException e) {
+            finish();
+        }
 
 
     }

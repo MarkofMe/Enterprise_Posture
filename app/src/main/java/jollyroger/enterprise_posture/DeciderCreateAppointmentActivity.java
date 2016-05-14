@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
@@ -34,6 +35,9 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_decider_create_appointment);
+
+        TextView appointmentNo = (TextView) findViewById(R.id.appointmentNumber);
+        appointmentNo.setText(dbHandler.getNextAppointmentID() + "");
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -60,18 +64,12 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
     }
 
     public void AddAppointment(View view) {
-        EditText appointmentNo = (EditText) findViewById(R.id.appointmentNumber);
-        int aNo = Integer.parseInt(appointmentNo.getText().toString());
         Spinner goodOrBadSpinner = (Spinner) findViewById(R.id.goodOrBadSpinner);
 
-        if (!appointmentNo.getText().toString().matches("")) {
-            dbHandler.insertDataAppointments(new Appointment(pID, aNo, new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
-            finish();
+        dbHandler.insertDataAppointments(new Appointment
+                (pID, dbHandler.getNextAppointmentID(), new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
+        finish();
 
-            startActivity(new Intent(this, Main_Menu_Activity.class));
-        } else { //One of the fields was blank.
-            Toast.makeText(this, "You did not enter an appointment number", Toast.LENGTH_SHORT).show();
-        }
-
+        startActivity(new Intent(this, Main_Menu_Activity.class));
     }
 }
