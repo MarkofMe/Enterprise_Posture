@@ -206,11 +206,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate())); // because its a date variable
         //Add photo to db
+        Log.d("For will, number 1", "");
         Bitmap photo = appointment.getPatientImage();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
         byte[] bArray = bos.toByteArray();
         values.put(AP_PATIENTIMAGE, bArray);
+        Log.d("For will, number 2", "");
         //
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
         SQLiteDatabase db = this.getWritableDatabase();

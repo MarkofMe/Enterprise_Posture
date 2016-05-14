@@ -4,16 +4,15 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-
     <include
         android:id="@+id/add_to_patient_toolbar"
         layout="@layout/app_bar" />
-
 
     <ListView
         android:id="@+id/listview_add_to_patients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top" />
+        android:layout_gravity="top"
+        android:layout_below="@+id/add_to_patient_toolbar" />
 
 </RelativeLayout>
