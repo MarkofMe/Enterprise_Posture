@@ -87,6 +87,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="230dp"
         android:text="View Appointment"
+        android:onClick="ViewAppointment"
         android:textColor="@color/textColour"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
