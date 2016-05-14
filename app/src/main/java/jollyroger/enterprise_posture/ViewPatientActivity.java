@@ -68,7 +68,7 @@ public class ViewPatientActivity extends AppCompatActivity {
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
-        Intent intent = new Intent(getApplicationContext(), UpdatePatientActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ViewAppointmentActivity.class);
         intent.putExtra("patient", p);
         startActivity(intent);
     }

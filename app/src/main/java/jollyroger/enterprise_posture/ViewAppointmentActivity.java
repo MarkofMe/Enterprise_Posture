@@ -3,6 +3,7 @@ package jollyroger.enterprise_posture;
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -57,11 +58,10 @@ public class ViewAppointmentActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        appointmentNumber.setText(a.getAppointmentNo());
-        appointmentDate.setText(formatter.format(a.getAppointmentDate()));
-        postureResult.setText(formatter.format(a.getDiagnostic()));
-
-        appointment_Imageholder.setImageBitmap(a.getPatientImage());
+        appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
+        appointmentDate.setText(formatter.format(c.getString(c.getColumnIndexOrThrow("AppointmentDate"))));
+        postureResult.setText(formatter.format(c.getColumnIndexOrThrow("Diagnostic")));
+        //appointment_Imageholder.setImageBitmap(c.getColumnIndexOrThrow("PatientImage"));
     }
 
     public void EditAppointment(View view) {
