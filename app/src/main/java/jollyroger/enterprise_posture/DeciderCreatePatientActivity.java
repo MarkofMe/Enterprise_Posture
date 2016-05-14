@@ -127,7 +127,6 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         extras.putInt("patientID", patientID);
         intent.putExtras(extras);
         startActivity(intent);
-
     }
 
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

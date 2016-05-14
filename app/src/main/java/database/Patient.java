@@ -14,7 +14,7 @@ public class Patient implements Parcelable {
     private int PatientID;
     private String FirstName;
     private String SurName;
-    private Date DoB;
+    private String DoB;
     private String Gender;
     private Integer Active;
 
@@ -26,7 +26,7 @@ public class Patient implements Parcelable {
     public Patient(String FirstName, String SurName, Date DoB, String Gender, Integer Active) {
         this.FirstName = FirstName;
         this.SurName = SurName;
-        this.DoB = DoB;
+        this.DoB = setDate(DoB);
         this.Gender = Gender;
         this.Active = Active;
     }
@@ -35,27 +35,33 @@ public class Patient implements Parcelable {
         this.PatientID = patientID;
         this.FirstName = FirstName;
         this.SurName = SurName;
+        this.DoB = setDate(DoB);
+        this.Gender = Gender;
+        this.Active = Active;
+    }
+
+    public Patient(Integer patientID, String FirstName, String SurName, String DoB, String Gender, Integer Active) {
+        this.PatientID = patientID;
+        this.FirstName = FirstName;
+        this.SurName = SurName;
         this.DoB = DoB;
         this.Gender = Gender;
         this.Active = Active;
     }
 
-    protected Patient(Parcel in) {
+    public Patient(Parcel in) {
         in.readInt();
         PatientID = Integer.parseInt(in.readString());
         FirstName = in.readString();
         SurName = in.readString();
-
-        //Dob
-        String strDob = in.readString();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
-        try {
-            DoB = dateFormat.parse(strDob);
-        } catch (ParseException e) {
-            DoB = new Date(2000, 1, 1);
-        }
+        DoB = in.readString();
         Gender = in.readString();
         Active = in.readInt();
+    }
+
+    private String setDate(Date d) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(d);
     }
 
     public static final Creator<Patient> CREATOR = new Creator<Patient>() {
@@ -104,12 +110,12 @@ public class Patient implements Parcelable {
         SurName = SurName;
     }
 
-    public Date getDoB() {
+    public String getDoB() {
         return DoB;
     }
 
     public void setDoB(Date doB) {
-        DoB = doB;
+        DoB = setDate(doB);
     }
 
     public String getGender() {

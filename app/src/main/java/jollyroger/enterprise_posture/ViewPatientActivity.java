@@ -44,15 +44,13 @@ public class ViewPatientActivity extends AppCompatActivity {
         TextView dob = (TextView) findViewById(R.id.viewDob);
         TextView gender = (TextView) findViewById(R.id.viewGender);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-
         //When using the back button to get to this class, the intent isn't used to create the class
         //and thus p is null. Send back to the DB fragment instead.
         try {
             Patient p = data.getParcelable("patient");
             firstName.setText(p.getFirstName());
             lastName.setText(p.getSurName());
-            dob.setText(formatter.format(p.getDoB()));
+            dob.setText(p.getDoB());
 
             gender.setText(p.getGender());
         } catch (NullPointerException e) {

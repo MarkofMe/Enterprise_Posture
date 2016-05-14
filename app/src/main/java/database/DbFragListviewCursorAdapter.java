@@ -16,8 +16,9 @@ import java.util.Date;
 
 import jollyroger.enterprise_posture.R;
 
-public class ListviewCursorAdapter extends CursorAdapter {
-    public ListviewCursorAdapter(Context context, Cursor cursor) {
+public class DbFragListviewCursorAdapter extends CursorAdapter {
+
+    public DbFragListviewCursorAdapter(Context context, Cursor cursor) {
         super(context, cursor, 0);
     }
 
@@ -41,26 +42,7 @@ public class ListviewCursorAdapter extends CursorAdapter {
         String strName = cursor.getString(cursor.getColumnIndexOrThrow("FirstName")) + " " + cursor.getString(cursor.getColumnIndexOrThrow("Surname"));
         String strDob = cursor.getString(cursor.getColumnIndexOrThrow("DoB"));
 
-        //Log.d("Into to dob", strDob);
-
-        //Convert date in the DB into a more readable format.
-        SimpleDateFormat readFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
-        SimpleDateFormat writeFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-        //Set ListView fields.
-        String d;
-        try {
-            Date dbDate = readFormat.parse(strDob);
-            d = writeFormat.format(dbDate);
-            if (d.equals(null)) {
-                d = "No dob set";
-            } else {
-                dob.setText("Dob: " + d);
-            }
-        } catch (ParseException e) {
-            dob.setText(strDob);
-        }
-
+        dob.setText(strDob);
         fullName.setText("  " + strName);
     }
 

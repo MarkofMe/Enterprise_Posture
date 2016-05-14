@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -20,7 +19,7 @@ import java.util.Date;
 
 import database.Appointment;
 import database.DatabaseHandler;
-import database.ListviewCursorAdapter;
+import database.DbFragListviewCursorAdapter;
 import database.Patient;
 
 public class DeciderAddToPatientActivity extends AppCompatActivity {
@@ -50,7 +49,7 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
         final ListView lv = (ListView) findViewById(R.id.listview_add_to_patients);
         lv.setClickable(true);
 
-        ListviewCursorAdapter lvAdapter = new ListviewCursorAdapter(this, cursor);
+        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(this, cursor);
         lv.setAdapter(lvAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +60,7 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
                 SQLiteCursor s = (SQLiteCursor) lv.getItemAtPosition(position);
 
                 String dob = s.getString(3);
-                SimpleDateFormat readFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+                SimpleDateFormat readFormat = new SimpleDateFormat("dd-MM-yyyy");
 
                 Date d = null;
                 try {
@@ -79,8 +78,9 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
                 db.insertDataAppointments(new Appointment
                         (p.getPatientID(), db.getNextAppointmentID(), new Date(), bitmap, "Good" ));
 
-                Toast.makeText(getBaseContext(), "Appointment Added to patient: " + p.getFirstName() + " " + p.getSurName(), Toast.LENGTH_SHORT).show();
-                finish();
+                Toast.makeText(getBaseContext(), "Appointment Added to patient: " + p.getFirstName() + " " + p.getSurName(), Toast.LENGTH_LONG).show();
+
+                startActivity(new Intent(getBaseContext(), Main_Menu_Activity.class));
             }
         });
     }

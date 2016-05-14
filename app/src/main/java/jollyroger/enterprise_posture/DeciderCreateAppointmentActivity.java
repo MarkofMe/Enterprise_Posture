@@ -48,9 +48,6 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
         pID = pid;
 
-        //Toast.makeText(this, pid, Toast.LENGTH_SHORT).show();
-        Log.d("ID: ", "" + pid);
-
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);
 
@@ -68,7 +65,8 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
         dbHandler.insertDataAppointments(new Appointment
                 (pID, dbHandler.getNextAppointmentID(), new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
-        finish();
+
+        Toast.makeText(getBaseContext(), "Appointment Added.", Toast.LENGTH_LONG).show();
 
         startActivity(new Intent(this, Main_Menu_Activity.class));
     }

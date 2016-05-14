@@ -70,15 +70,17 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
 
         showDialogOnButtonClick();
 
-        Date dob = p.getDoB();
+        String dob = p.getDoB();
         SimpleDateFormat writeFormat = new SimpleDateFormat("dd-MM-yyyy");
         String ddd = writeFormat.format(dob);
 
-        year_x = Integer.parseInt((android.text.format.DateFormat.format("yyyy", editP.getDoB())).toString());
-        month_x = Integer.parseInt((android.text.format.DateFormat.format("MM", editP.getDoB())).toString()) - 1;
-        day_x = Integer.parseInt((android.text.format.DateFormat.format("dd", editP.getDoB())).toString());
+        Date d = writeFormat.parse(ddd, null);
 
-        txtDob.setText("Date of Birth: " + ddd);
+        year_x = Integer.parseInt((android.text.format.DateFormat.format("yyyy", d)).toString());
+        month_x = Integer.parseInt((android.text.format.DateFormat.format("MM", d)).toString()) - 1;
+        day_x = Integer.parseInt((android.text.format.DateFormat.format("dd", d)).toString());
+
+        txtDob.setText(p.getDoB());
 
         Spinner dropdown = (Spinner) findViewById(R.id.editgenderSpinner);
         String[] items = new String[]{"Male", "Female", "Other", "Not specified"};

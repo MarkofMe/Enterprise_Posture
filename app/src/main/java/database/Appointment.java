@@ -3,13 +3,14 @@ package database;
 import android.graphics.Bitmap;
 import android.media.Image;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment {
     private int AppointmentID; // Primary Key
     private int PatientID; // Foreign key
     private int AppointmentNo;
-    private Date AppointmentDate;
+    private String AppointmentDate;
     private Bitmap PatientImage;
     private String Diagnostic;
 
@@ -21,11 +22,15 @@ public class Appointment {
     public Appointment(int patientID, int appointmentNo, Date appointmentDate, Bitmap patientImage, String diagnostic) {
         this.PatientID = patientID;
         this.AppointmentNo = appointmentNo;
-        this.AppointmentDate = appointmentDate;
+        this.AppointmentDate = setDate(appointmentDate);
         this.PatientImage = patientImage;
         this.Diagnostic = diagnostic;
     }
 
+    private String setDate(Date d) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(d);
+    }
 
     public int getPatientID() {
         return PatientID;
@@ -43,12 +48,12 @@ public class Appointment {
         AppointmentNo = appointmentNo;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return AppointmentDate;
     }
 
     public void setAppointmentDate(Date appointmentDate) {
-        AppointmentDate = appointmentDate;
+        AppointmentDate = setDate(appointmentDate);
     }
 
     public Bitmap getPatientImage() {

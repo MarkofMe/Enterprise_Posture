@@ -3,11 +3,9 @@ package jollyroger.enterprise_posture;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import database.DatabaseHandler;
-import database.ListviewCursorAdapter;
+import database.DbFragListviewCursorAdapter;
 import database.Patient;
 
 
@@ -54,7 +52,7 @@ public class DatabaseFragment extends Fragment {
         final ListView lv = (ListView) v.findViewById(R.id.listview_patients);
         lv.setClickable(true);
 
-        ListviewCursorAdapter lvAdapter = new ListviewCursorAdapter(getContext(), cursor);
+        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(getContext(), cursor);
         lv.setAdapter(lvAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,7 +63,7 @@ public class DatabaseFragment extends Fragment {
                 SQLiteCursor s = (SQLiteCursor) lv.getItemAtPosition(position);
 
                 String dob = s.getString(3);
-                SimpleDateFormat readFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy");
+                SimpleDateFormat readFormat = new SimpleDateFormat("dd-MM-yyyy");
 
                 Date d = null;
                 try {

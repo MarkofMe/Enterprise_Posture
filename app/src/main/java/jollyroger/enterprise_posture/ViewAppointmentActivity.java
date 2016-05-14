@@ -4,24 +4,23 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
-import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.sql.Blob;
-import java.text.SimpleDateFormat;
-
 import database.DatabaseHandler;
+import database.DbFragListviewCursorAdapter;
 import database.Patient;
-import database.Appointment;
+import database.ViewPatientListviewCursorAdapter;
 
 public class ViewAppointmentActivity extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         act = this;
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_appointment);
+        setContentView(R.layout.activity_view_appointments);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.View_Appointment_toolbar);
         setSupportActionBar(toolbar);
@@ -42,35 +41,23 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //
+
+        DatabaseHandler dbHandler = new DatabaseHandler(getBaseContext());
+
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
-        //For mark, the cursor contains all the appointments for the patient p.
-        DatabaseHandler db = new DatabaseHandler(getBaseContext());
-        Cursor c = db.getPatientAppointments(p.getPatientID());
+        Cursor cursor = dbHandler.getPatientAppointments(p.getPatientID());
 
-        TextView appointmentNumber = (TextView) findViewById(R.id.viewAppointmentNumber);
-        TextView appointmentDate = (TextView) findViewById(R.id.viewAppointmentDate);
-        TextView postureResult = (TextView) findViewById(R.id.viewPostureResult);
-        ImageView appointment_Imageholder = (ImageView) findViewById(R.id.viewAppointment_imageholder);
 
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        final ListView lv = (ListView) findViewById(R.id.viewAppointment_Listview);
+        //lv.setClickable(true);
 
-        //Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
-
-        c.moveToFirst();
-        try {
-            appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
-            appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
-            postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
-            byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
-            Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
-            appointment_Imageholder.setImageBitmap(img);
-        } catch (CursorIndexOutOfBoundsException e) {
-            Toast.makeText(getBaseContext(), "No appointments exist", Toast.LENGTH_SHORT).show();
-            finish();
-        }
+        ViewPatientListviewCursorAdapter lvAdapter = new ViewPatientListviewCursorAdapter(getBaseContext(), cursor);
+        lv.setAdapter(lvAdapter);
     }
+
 
     public void EditAppointment(View view) {
     }
