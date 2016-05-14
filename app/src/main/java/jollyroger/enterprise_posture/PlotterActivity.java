@@ -11,6 +11,7 @@ import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +81,7 @@ public class PlotterActivity extends AppCompatActivity {
                     // creating the image (pointer icon).
                     ImageView newMarker = new ImageView(PlotterActivity.this);
                     newMarker.setImageResource(R.drawable.markericon);
+
 
                     // creating a relativeLayout LayoutParams object, to set Margins of object.
                     RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
