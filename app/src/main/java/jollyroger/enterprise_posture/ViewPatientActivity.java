@@ -37,7 +37,6 @@ public class ViewPatientActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle data = getIntent().getExtras();
-        Patient p = data.getParcelable("patient");
 
         //Log.d("PatientID: ", "" + p.getPatientID());
         TextView firstName = (TextView) findViewById(R.id.viewFirstName);
@@ -50,6 +49,7 @@ public class ViewPatientActivity extends AppCompatActivity {
         //When using the back button to get to this class, the intent isn't used to create the class
         //and thus p is null. Send back to the DB fragment instead.
         try {
+            Patient p = data.getParcelable("patient");
             firstName.setText(p.getFirstName());
             lastName.setText(p.getSurName());
             dob.setText(formatter.format(p.getDoB()));

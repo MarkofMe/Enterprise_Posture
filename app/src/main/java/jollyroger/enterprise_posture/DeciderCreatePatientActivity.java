@@ -120,7 +120,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
 
         Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
         ByteArrayOutputStream bs = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.PNG, 50, bs);
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, bs);
 
         Bundle extras = new Bundle();
         extras.putByteArray("CameraImage", bs.toByteArray());
