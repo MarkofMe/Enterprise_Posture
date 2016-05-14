@@ -14,16 +14,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/first_name"
+        android:layout_marginTop="65dp"
+        android:text="Appointment Number: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/viewFirstName"
+        android:id="@+id/viewAppointmentNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginStart="195dp"
+        android:layout_marginTop="65dp"
         android:text="John"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -32,16 +32,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
-        android:text="Dob"
+        android:layout_marginTop="105dp"
+        android:text="Appointment Date: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/viewDob"
+        android:id="@+id/viewAppointmentDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="105dp"
         android:text="1/1/1992"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -49,24 +49,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
-        android:text="Gender"
+        android:layout_marginTop="145dp"
+        android:text="Posture: "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/viewGender"
+        android:id="@+id/viewPostureResult"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="148dp"
-        android:text="1/1/1992"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="145dp"
+        android:text="Nuetral"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ImageView
-        android:id="@+id/decider_imageholder"
+        android:id="@+id/viewAppointment_imageholder"
         android:layout_width="300dp"
-        android:layout_height="360dp"
+        android:layout_height="340dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_marginTop="175dp" />
+
+    <Button
+        android:id="@+id/Edit_patient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/my_blue"
+        android:onClick="EditAppointment"
+        android:textColor="@color/textColour"
+        android:text="EDIT APPOINTMENT DETAILS" />
 
 </RelativeLayout>

@@ -251,4 +251,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(Table_Appointments, "_id = ?", new String[]{id}); // delete method returns the number of affected rows
     }
+
+
 }
