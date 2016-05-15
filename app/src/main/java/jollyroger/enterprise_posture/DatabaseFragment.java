@@ -45,6 +45,7 @@ public class DatabaseFragment extends Fragment {
 
     private void populateListView(View v, Cursor c) {
         DatabaseHandler dbHandler;
+        //Allow the listview to be drawn from a custom cursor. Used when searching the DB.
         if (c == null) {
             dbHandler = new DatabaseHandler(getContext());
             c = dbHandler.getPatientsTable();
@@ -58,6 +59,8 @@ public class DatabaseFragment extends Fragment {
         DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(getContext(), c);
         lv.setAdapter(lvAdapter);
 
+        //Allow for clicking on individual listview items. Clicking on an item
+        //starts a new activity for viewing the patients details.
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -75,6 +78,7 @@ public class DatabaseFragment extends Fragment {
                     e.printStackTrace();
                 }
 
+                //Recreate patient from the Database.
                 Patient p = new Patient(s.getInt(0), s.getString(1), s.getString(2), d, s.getString(4), s.getInt(5));
 
                 Intent intent = new Intent(getContext(), ViewPatientActivity.class);
@@ -85,10 +89,12 @@ public class DatabaseFragment extends Fragment {
         });
 
 
+        //Setup the searchview.
         final SearchView search = (SearchView) v.findViewById(R.id.dbFragSearchview);
 
         search.setQueryHint("Search first names...");
 
+        //The searchview runs a database query when the user clicks submit on the keyboard widget.
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -106,6 +112,8 @@ public class DatabaseFragment extends Fragment {
         });
     }
 
+    //Rebuilds the listview for times when it has been updated, such as when the app goes from the create
+    //patient activity back to the database activity.
     @Override
     public void onResume() {
         super.onResume();

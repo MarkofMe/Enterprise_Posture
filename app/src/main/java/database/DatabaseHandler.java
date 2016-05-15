@@ -75,6 +75,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PT_ACTIVE
                 + " INTEGER NOT NULL );";
 
+        //Must turn on foreign keys to create the next two tables.
         db.execSQL("PRAGMA foreign_keys=ON;");
         String CREATE_APPOINTMENTS_TABLE = "CREATE TABLE "
                 + Table_Appointments
@@ -104,7 +105,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         db.execSQL(CREATE_IMAGE_TABLE);
     }
 
-    //Converts input int array into a string, to be used for storage of plotter points in the db.
+    //Converts input String[] array into a string, to be used for storing plotter points in the db.
     public String StringArrayToString(String[] points) {
         StringBuilder builder = new StringBuilder();
         for (String i : points) {
@@ -146,6 +147,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return c.getCount();
     }
 
+    //Searches the Patient table for any patients that the first name matches the input parameter 'name'.
     public Cursor searchForNames(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
