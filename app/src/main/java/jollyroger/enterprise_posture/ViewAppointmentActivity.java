@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.sql.Blob;
 import java.text.SimpleDateFormat;
 
 import database.DatabaseHandler;
@@ -61,7 +63,9 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
         appointmentDate.setText(formatter.format(c.getString(c.getColumnIndexOrThrow("AppointmentDate"))));
         postureResult.setText(formatter.format(c.getColumnIndexOrThrow("Diagnostic")));
-        //appointment_Imageholder.setImageBitmap(c.getColumnIndexOrThrow("PatientImage"));
+        byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
+        Bitmap img = BitmapFactory.decodeByteArray(b,0, b.length);
+        appointment_Imageholder.setImageBitmap(img);
     }
 
     public void EditAppointment(View view) {
