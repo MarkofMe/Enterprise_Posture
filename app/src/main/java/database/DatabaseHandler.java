@@ -150,6 +150,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public Cursor searchForNames(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
+
+        //Searching first and surname doesn't work atm.
+//        Cursor cursor = db.rawQuery("SELECT  FirstName, Surname, FROM Patients WHERE \"FirstName\" || ' ' || \"Surname\" LIKE ?",
+//                new String[]{"%" + name + "%"});
+//        Cursor mCursor = db.rawQuery(
+//                "SELECT FirstName,Surname, \"FirstName\" || \"Surname\" AS val FROM "
+//                        + Table_Patients+ " where \"FirstName\" || \"Surname\" LIKE '%" + name + "%'",
+//                null);
+//        Cursor mCursor = db.rawQuery(
+//                "SELECT " + PT_FIRSTNAME + "," + PT_SURNAME +  ", \"firstname\" || \"lastname\" AS val FROM "
+//                        + Table_Patients + " where \"firstname\" || \"lastname\" LIKE '%" + name + "%'",
+//                null);
+//        Cursor c = db.rawQuery(
+//                "SELECT FirstName,Surname, \"FirstName\" || \"Surname\" AS val FROM "
+//                        + Table_Patients + " WHERE \"FirstName\" || \"Surname\" LIKE '%" + name + "%'",
+//                null);
         return c;
     }
 

@@ -87,7 +87,7 @@ public class DatabaseFragment extends Fragment {
 
         final SearchView search = (SearchView) v.findViewById(R.id.dbFragSearchview);
 
-        search.setQueryHint("Search the Database...");
+        search.setQueryHint("Search first names...");
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override

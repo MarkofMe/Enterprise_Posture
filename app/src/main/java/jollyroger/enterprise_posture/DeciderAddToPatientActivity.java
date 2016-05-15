@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -26,7 +27,6 @@ import database.Patient;
 
 public class DeciderAddToPatientActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
@@ -41,7 +41,6 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         populateListView(null);
     }
-
 
     //addPatientSearchView
     private void populateListView(Cursor c) {
@@ -80,7 +79,15 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         final SearchView search = (SearchView) findViewById(R.id.addPatientSearchView);
 
-        search.setQueryHint("Search the Database...");
+        search.setQueryHint("Search first names...");
+
+        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                Log.d("Attacked","");
+                populateListView(null);
+            }
+        });
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -91,7 +98,6 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
                 search.clearFocus();
                 return true;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
                 return true;
