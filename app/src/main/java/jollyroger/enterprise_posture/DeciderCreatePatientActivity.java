@@ -115,7 +115,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
             patientID = dbHandler.getNextPatientID();
-            finish();
+            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText()+ " Updated.", Toast.LENGTH_SHORT).show();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
