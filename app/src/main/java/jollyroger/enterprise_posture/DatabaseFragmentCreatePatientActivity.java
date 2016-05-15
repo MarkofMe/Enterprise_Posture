@@ -107,7 +107,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 1));
-            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText()+ " Updated.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText()+ " Added.", Toast.LENGTH_SHORT).show();
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
