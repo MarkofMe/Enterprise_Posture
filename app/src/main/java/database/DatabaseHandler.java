@@ -47,7 +47,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String AP_PATIENTID = "PatientID";
     private static final String AP_APPOINTMENTNO = "AppointmentNo";
     private static final String AP_APPOINTMENTDATE = "AppointmentDate";
-    private static final String AP_PATIENTIMAGE = "PatientImage";
     private static final String AP_DIAGNOSTIC = "Diagnostic";
 
     //private SQLiteDatabase db;
@@ -147,26 +146,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return c.getCount();
     }
 
+    public Cursor getAppointmentImages(int appointNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM Images WHERE AppointmentNo=" + appointNumber;
+        Cursor c = db.rawQuery(query, null);
+        return c;
+    }
+
     //Searches the Patient table for any patients that the first name matches the input parameter 'name'.
     public Cursor searchForNames(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
+        //Returns any that match to first name
+        //Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
 
-        //Searching first and surname doesn't work atm.
-//        Cursor cursor = db.rawQuery("SELECT  FirstName, Surname, FROM Patients WHERE \"FirstName\" || ' ' || \"Surname\" LIKE ?",
-//                new String[]{"%" + name + "%"});
-//        Cursor mCursor = db.rawQuery(
-//                "SELECT FirstName,Surname, \"FirstName\" || \"Surname\" AS val FROM "
-//                        + Table_Patients+ " where \"FirstName\" || \"Surname\" LIKE '%" + name + "%'",
-//                null);
-//        Cursor mCursor = db.rawQuery(
-//                "SELECT " + PT_FIRSTNAME + "," + PT_SURNAME +  ", \"firstname\" || \"lastname\" AS val FROM "
-//                        + Table_Patients + " where \"firstname\" || \"lastname\" LIKE '%" + name + "%'",
-//                null);
-//        Cursor c = db.rawQuery(
-//                "SELECT FirstName,Surname, \"FirstName\" || \"Surname\" AS val FROM "
-//                        + Table_Patients + " WHERE \"FirstName\" || \"Surname\" LIKE '%" + name + "%'",
-//                null);
+        //Returns any that match to firstname, surname or combined.
+        Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" +
+                "OR " + PT_SURNAME + " LIKE '%"+name+"%'" + "OR " + PT_FIRSTNAME + "||" + PT_SURNAME + " LIKE '%"+name+"%'" , null);
         return c;
     }
 

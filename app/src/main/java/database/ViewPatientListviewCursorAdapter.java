@@ -18,7 +18,7 @@ import android.widget.Toast;
 import jollyroger.enterprise_posture.R;
 
 /**
- * Created by hj on 14/05/2016.
+ * Created by Joel wade p4100378 on 14/05/2016.
  */
 public class ViewPatientListviewCursorAdapter extends CursorAdapter {
 
@@ -41,10 +41,19 @@ public class ViewPatientListviewCursorAdapter extends CursorAdapter {
 
         //Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
 
-        appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
+        int appointNumb = c.getInt(c.getColumnIndexOrThrow("AppointmentNo"));
+        appointmentNumber.setText(appointNumb + "");
         appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
         postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
-        byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
+
+
+        Log.d("1" , appointNumb + "");
+        DatabaseHandler db = new DatabaseHandler(context);
+        Cursor image = db.getAppointmentImages(appointNumb);
+        Log.d("2", DatabaseUtils.dumpCursorToString(image));
+
+        image.moveToFirst();
+        byte[] b = image.getBlob(image.getColumnIndex("Image"));
         Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
         appointment_Imageholder.setImageBitmap(img);
     }

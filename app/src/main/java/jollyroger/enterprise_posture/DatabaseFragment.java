@@ -92,14 +92,16 @@ public class DatabaseFragment extends Fragment {
         //Setup the searchview.
         final SearchView search = (SearchView) v.findViewById(R.id.dbFragSearchview);
 
-        search.setQueryHint("Search first names...");
+        search.setQueryHint("Search the database...");
 
         //The searchview runs a database query when the user clicks submit on the keyboard widget.
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 DatabaseHandler db = new DatabaseHandler(getContext());
-                Cursor c = db.searchForNames(search.getQuery() + "");
+                String searchQuery = search.getQuery().toString();
+                searchQuery = searchQuery.replace(" ", "");
+                Cursor c = db.searchForNames(searchQuery);
                 populateListView(getView(), c);
                 search.clearFocus();
                 return true;

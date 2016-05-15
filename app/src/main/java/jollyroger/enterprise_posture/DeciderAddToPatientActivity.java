@@ -81,7 +81,7 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         final SearchView search = (SearchView) findViewById(R.id.addPatientSearchView);
 
-        search.setQueryHint("Search first names...");
+        search.setQueryHint("Search the database...");
 
         search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -95,7 +95,9 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 DatabaseHandler db = new DatabaseHandler(getBaseContext());
-                Cursor c = db.searchForNames(search.getQuery() + "");
+                String searchQuery = search.getQuery().toString();
+                searchQuery = searchQuery.replace(" ", "");
+                Cursor c = db.searchForNames(searchQuery);
                 populateListView(c);
                 search.clearFocus();
                 return true;
