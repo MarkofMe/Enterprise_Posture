@@ -83,14 +83,6 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
         search.setQueryHint("Search the database...");
 
-        search.setOnQueryTextFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                Log.d("Attacked","");
-                populateListView(null);
-            }
-        });
-
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
