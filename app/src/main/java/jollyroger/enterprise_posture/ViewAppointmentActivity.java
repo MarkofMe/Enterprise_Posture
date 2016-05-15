@@ -52,7 +52,7 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         //String appDate = c.getString(c.getColumnIndexOrThrow("AppointmentDate"));
         //Gets the appDate as a String (duh). Take the column name e.g "AppointmentDate" from the dbhandler at the top.
 
-        Log.d("PatientID: ", "" + p.getPatientID());
+//        Log.d("PatientID: ", "" + p.getPatientID());
         //Log.d("PatientID: ", "" + a.getPatientID());
         TextView appointmentNumber = (TextView) findViewById(R.id.viewAppointmentNumber);
         TextView appointmentDate = (TextView) findViewById(R.id.viewAppointmentDate);
@@ -61,15 +61,16 @@ public class ViewAppointmentActivity extends AppCompatActivity {
 
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 
-        Log.d("App number", (DatabaseUtils.dumpCursorToString(c)));
+        //Log.d("App number", (DatabaseUtils.dumpCursorToString(c)));
         //Log.d("App number", c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
 
-//        appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
-//        appointmentDate.setText(formatter.format(c.getString(c.getColumnIndexOrThrow("AppointmentDate"))));
-//        postureResult.setText(formatter.format(c.getColumnIndexOrThrow("Diagnostic")));
-//        byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
-//        Bitmap img = BitmapFactory.decodeByteArray(b,0, b.length);
-//        appointment_Imageholder.setImageBitmap(img);
+        c.moveToFirst();
+        appointmentNumber.setText(c.getString(c.getColumnIndexOrThrow("AppointmentNo")));
+        appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
+        postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
+        byte[] b = c.getBlob(c.getColumnIndexOrThrow("PatientImage"));
+        Bitmap img = BitmapFactory.decodeByteArray(b,0, b.length);
+        appointment_Imageholder.setImageBitmap(img);
     }
 
     public void EditAppointment(View view) {
