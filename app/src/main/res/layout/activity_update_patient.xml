@@ -108,6 +108,6 @@
         android:background="@color/my_blue"
         android:textColor="@color/textColour"
         android:onClick="Edit"
-        android:text="Edit Patient" />
+        android:text="Add to Database" />
 
 </RelativeLayout>

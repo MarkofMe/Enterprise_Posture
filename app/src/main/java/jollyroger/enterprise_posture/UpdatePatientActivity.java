@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ import database.DatabaseHandler;
 import database.Patient;
 
 import static jollyroger.enterprise_posture.R.id.Update_Patient_toolbar;
+import static jollyroger.enterprise_posture.R.id.firstNameInput;
 
 public class UpdatePatientActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -70,15 +72,11 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
 
         showDialogOnButtonClick();
 
-        String dob = p.getDoB();
-        SimpleDateFormat writeFormat = new SimpleDateFormat("dd-MM-yyyy");
-        String ddd = writeFormat.format(dob);
-
-        Date d = writeFormat.parse(ddd, null);
-
-        year_x = Integer.parseInt((android.text.format.DateFormat.format("yyyy", d)).toString());
-        month_x = Integer.parseInt((android.text.format.DateFormat.format("MM", d)).toString()) - 1;
-        day_x = Integer.parseInt((android.text.format.DateFormat.format("dd", d)).toString());
+        //Take dob from DB and convert for the date spinner
+        String d = p.getDoB();
+        day_x = Integer.parseInt(d.substring(0,2));
+        month_x = Integer.parseInt(d.substring(3,5));
+        year_x = Integer.parseInt(d.substring(6));
 
         txtDob.setText(p.getDoB());
 
@@ -147,7 +145,9 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.updatePatients(new Patient(patientId, firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 1));
-            finish();
+
+            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText()+ " Updated.", Toast.LENGTH_SHORT).show();
+
             startActivity(new Intent(this, Main_Menu_Activity.class));
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
@@ -162,8 +162,6 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
 
         dbHandler.updatePatients(new Patient(patientId, firstName.getText().toString(), lastName.getText().toString(),
                 new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 0));
-        finish();
-
         startActivity(new Intent(this, Main_Menu_Activity.class));
     }
 
