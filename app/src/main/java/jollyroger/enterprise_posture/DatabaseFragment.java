@@ -6,11 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteCursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -36,23 +38,24 @@ public class DatabaseFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_database, container, false);
 
-        populateListView(v);
+        populateListView(v, null);
 
         return v;
     }
 
-    private void populateListView(View v) {
-
-        DatabaseHandler dbHandler = new DatabaseHandler(getContext());
-
-        Cursor cursor = dbHandler.getPatientsTable();
+    private void populateListView(View v, Cursor c) {
+        DatabaseHandler dbHandler;
+        if (c == null) {
+            dbHandler = new DatabaseHandler(getContext());
+            c = dbHandler.getPatientsTable();
+        }
 
         //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
 
         final ListView lv = (ListView) v.findViewById(R.id.listview_patients);
         lv.setClickable(true);
 
-        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(getContext(), cursor);
+        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(getContext(), c);
         lv.setAdapter(lvAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -80,6 +83,27 @@ public class DatabaseFragment extends Fragment {
 
             }
         });
+
+
+        final SearchView search = (SearchView) v.findViewById(R.id.dbFragSearchview);
+
+        search.setQueryHint("Search the Database...");
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                DatabaseHandler db = new DatabaseHandler(getContext());
+                Cursor c = db.searchForNames(search.getQuery() + "");
+                populateListView(getView(), c);
+                search.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
     }
 
     @Override
@@ -89,7 +113,7 @@ public class DatabaseFragment extends Fragment {
             return;
         }
 
-        populateListView(getView());
+        populateListView(getView(), null);
     }
 
 }

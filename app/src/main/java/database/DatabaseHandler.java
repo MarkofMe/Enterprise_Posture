@@ -125,14 +125,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return numbs;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldNum, int newNum) {
-        //Drop older table if exists and create fresh
-        db.execSQL("DROP TABLE IF EXISTS " + Table_Patients);
-        db.execSQL("DROP TABLE IF EXISTS " + Table_Appointments);
-        onCreate(db);
-    }
-
     public Cursor getPatientsTable() {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.rawQuery("SELECT * FROM Patients WHERE Active=1", null);
@@ -153,6 +145,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Appointment", null);
         return c.getCount();
+    }
+
+    public Cursor searchForNames(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
+        return c;
     }
 
     public boolean insertDataImage(AppointmentImage image) {
@@ -275,5 +273,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.delete(Table_Appointments, "_id = ?", new String[]{id}); // delete method returns the number of affected rows
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldNum, int newNum) {
+        //Drop older table if exists and create fresh
+        db.execSQL("DROP TABLE IF EXISTS " + Table_Patients);
+        db.execSQL("DROP TABLE IF EXISTS " + Table_Appointments);
+        onCreate(db);
+    }
 
 }

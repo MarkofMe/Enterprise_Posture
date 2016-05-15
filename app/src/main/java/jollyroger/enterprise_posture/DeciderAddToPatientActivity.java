@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.text.ParseException;
@@ -37,19 +38,22 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        populateListView();
+        populateListView(null);
     }
 
-    private void populateListView() {
 
-        DatabaseHandler dbHandler = new DatabaseHandler(this);
-
-        Cursor cursor = dbHandler.getPatientsTable();
+    //addPatientSearchView
+    private void populateListView(Cursor c) {
+        DatabaseHandler dbHandler;
+        if (c == null) {
+            dbHandler = new DatabaseHandler(this);
+            c = dbHandler.getPatientsTable();
+        }
 
         final ListView lv = (ListView) findViewById(R.id.listview_add_to_patients);
         lv.setClickable(true);
 
-        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(this, cursor);
+        DbFragListviewCursorAdapter lvAdapter = new DbFragListviewCursorAdapter(this, c);
         lv.setAdapter(lvAdapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,6 +85,26 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Appointment Added to patient: " + p.getFirstName() + " " + p.getSurName(), Toast.LENGTH_LONG).show();
 
                 startActivity(new Intent(getBaseContext(), Main_Menu_Activity.class));
+            }
+        });
+
+        final SearchView search = (SearchView) findViewById(R.id.addPatientSearchView);
+
+        search.setQueryHint("Search the Database...");
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                DatabaseHandler db = new DatabaseHandler(getBaseContext());
+                Cursor c = db.searchForNames(search.getQuery() + "");
+                populateListView(c);
+                search.clearFocus();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
             }
         });
     }
