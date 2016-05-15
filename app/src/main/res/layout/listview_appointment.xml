@@ -41,7 +41,7 @@
         android:text="DATE"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true" />
+        android:layout_toEndOf="@+id/textView" />
 
     <TextView
         android:layout_width="wrap_content"

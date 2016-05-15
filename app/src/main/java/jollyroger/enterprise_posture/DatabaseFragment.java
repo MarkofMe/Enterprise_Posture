@@ -44,14 +44,13 @@ public class DatabaseFragment extends Fragment {
     }
 
     private void populateListView(View v, Cursor c) {
+
         DatabaseHandler dbHandler;
         //Allow the listview to be drawn from a custom cursor. Used when searching the DB.
         if (c == null) {
             dbHandler = new DatabaseHandler(getContext());
             c = dbHandler.getPatientsTable();
         }
-
-        //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(cursor));
 
         final ListView lv = (ListView) v.findViewById(R.id.listview_patients);
         lv.setClickable(true);
@@ -66,6 +65,7 @@ public class DatabaseFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
 
+                //Get the patient that was clicked on from the database.
                 SQLiteCursor s = (SQLiteCursor) lv.getItemAtPosition(position);
 
                 String dob = s.getString(3);
@@ -100,6 +100,7 @@ public class DatabaseFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {
                 DatabaseHandler db = new DatabaseHandler(getContext());
                 String searchQuery = search.getQuery().toString();
+                //Remove any spaces, this makes comparing to the database values easier.
                 searchQuery = searchQuery.replace(" ", "");
                 Cursor c = db.searchForNames(searchQuery);
                 populateListView(getView(), c);

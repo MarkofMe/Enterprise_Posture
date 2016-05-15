@@ -22,15 +22,12 @@ public class DbFragListviewCursorAdapter extends CursorAdapter {
         super(context, cursor, 0);
     }
 
-    // The newView method is used to inflate a new view and return it,
-    // you don't bind any data to the view at this point.
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         return LayoutInflater.from(context).inflate(R.layout.listview_items, parent, false);
     }
 
     // The bindView method is used to bind all data to a given view
-    // such as setting the text on a TextView.
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
 
@@ -42,6 +39,7 @@ public class DbFragListviewCursorAdapter extends CursorAdapter {
         String strName = cursor.getString(cursor.getColumnIndexOrThrow("FirstName")) + " " + cursor.getString(cursor.getColumnIndexOrThrow("Surname"));
         String strDob = cursor.getString(cursor.getColumnIndexOrThrow("DoB"));
 
+        //Assign properties to the corrosponding view objects
         dob.setText(strDob);
         fullName.setText("  " + strName);
     }

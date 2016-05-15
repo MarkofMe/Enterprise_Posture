@@ -14,7 +14,7 @@ import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 
 public class DeciderActivity extends AppCompatActivity {
 
-
+    //This activity is used when the
     Bitmap photo = null;
     String[] points = null;
 
@@ -46,7 +46,6 @@ public class DeciderActivity extends AppCompatActivity {
         intent.putExtra("Points array", points);
         intent.putExtra("CameraImage", photo);
         startActivity(intent);
-
     }
 
     public void AddToExistingPatient(View view) {
