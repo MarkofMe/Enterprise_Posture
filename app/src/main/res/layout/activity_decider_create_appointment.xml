@@ -53,6 +53,13 @@
             android:layout_toEndOf="@+id/textView3"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/createAppointmentImageview"
+            android:layout_below="@+id/goodOrBadSpinner"
+            android:layout_alignStart="@+id/goodOrBadSpinner" />
+
     </RelativeLayout>
 
     <Button

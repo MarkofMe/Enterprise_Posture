@@ -10,13 +10,11 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.ByteArrayInputStream;
 import java.util.Date;
 
 import database.Appointment;
@@ -28,7 +26,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
 
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     Bitmap photo = null;
-    int pID;
+    int patientID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +44,10 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         photo = bitmap;
 
-        pID = pid;
+        ImageView image = (ImageView) findViewById(R.id.createAppointmentImageview);
+        image.setImageBitmap(bitmap);
+
+        patientID = pid;
 
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);
@@ -64,7 +65,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         Spinner goodOrBadSpinner = (Spinner) findViewById(R.id.goodOrBadSpinner);
 
         dbHandler.insertDataAppointments(new Appointment
-                (pID, dbHandler.getNextAppointmentID(), new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
+                (patientID, dbHandler.getNextAppointmentID(), new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
 
         Toast.makeText(getBaseContext(), "Appointment Added.", Toast.LENGTH_LONG).show();
 

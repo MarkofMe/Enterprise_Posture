@@ -42,14 +42,12 @@ public class ViewAppointmentActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         //
-
         DatabaseHandler dbHandler = new DatabaseHandler(getBaseContext());
 
         Bundle data = getIntent().getExtras();
         Patient p = data.getParcelable("patient");
 
         Cursor cursor = dbHandler.getPatientAppointments(p.getPatientID());
-
 
         final ListView lv = (ListView) findViewById(R.id.viewAppointment_Listview);
         //lv.setClickable(true);

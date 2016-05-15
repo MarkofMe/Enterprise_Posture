@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -63,28 +64,17 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
                 SQLiteCursor s = (SQLiteCursor) lv.getItemAtPosition(position);
 
-                String dob = s.getString(3);
-                SimpleDateFormat readFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-                Date d = null;
-                try {
-                    d = readFormat.parse(dob);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                Patient p = new Patient(s.getInt(0), s.getString(1), s.getString(2), d, s.getString(4), s.getInt(5));
-
-                DatabaseHandler db = new DatabaseHandler(getBaseContext());
-
                 Intent intent = getIntent();
                 Bitmap bitmap = intent.getParcelableExtra("CameraImage");
-                db.insertDataAppointments(new Appointment
-                        (p.getPatientID(), db.getNextAppointmentID(), new Date(), bitmap, "Good" ));
 
-                Toast.makeText(getBaseContext(), "Appointment Added to patient: " + p.getFirstName() + " " + p.getSurName(), Toast.LENGTH_LONG).show();
-
-                startActivity(new Intent(getBaseContext(), Main_Menu_Activity.class));
+                Intent nextIntent = new Intent(getBaseContext(), DeciderCreateAppointmentActivity.class);
+                Bundle extras = new Bundle();
+                extras.putInt("patientID", s.getInt(0));
+                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bs);
+                extras.putByteArray("CameraImage", bs.toByteArray());
+                nextIntent.putExtras(extras);
+                startActivity(nextIntent);
             }
         });
 
