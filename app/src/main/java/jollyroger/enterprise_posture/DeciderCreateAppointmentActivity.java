@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 import java.util.Date;
 
 import database.Appointment;
+import database.AppointmentImage;
 import database.DatabaseHandler;
 
 import static jollyroger.enterprise_posture.R.id.decider_toolbar;
@@ -27,6 +27,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
     DatabaseHandler dbHandler = new DatabaseHandler(this);
     Bitmap photo = null;
     int patientID;
+    String[] points2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
         byte[] byteArray = getIntent().getByteArrayExtra("CameraImage");
         Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
         photo = bitmap;
+        points2 = intent.getStringArrayExtra("Points array");
 
         ImageView image = (ImageView) findViewById(R.id.createAppointmentImageview);
         image.setImageBitmap(bitmap);
@@ -64,8 +66,13 @@ public class DeciderCreateAppointmentActivity extends AppCompatActivity {
     public void AddAppointment(View view) {
         Spinner goodOrBadSpinner = (Spinner) findViewById(R.id.goodOrBadSpinner);
 
+        int appointmentID = dbHandler.getNextAppointmentID();
         dbHandler.insertDataAppointments(new Appointment
-                (patientID, dbHandler.getNextAppointmentID(), new Date(), photo, goodOrBadSpinner.getSelectedItem().toString()));
+                (patientID, appointmentID, new Date(), goodOrBadSpinner.getSelectedItem().toString()));
+
+        //AppointmentImage(int appNumb, Bitmap i, String points2)
+        dbHandler.insertDataImage(new AppointmentImage
+                (appointmentID, photo, dbHandler.StringArrayToString(points2)));
 
         Toast.makeText(getBaseContext(), "Appointment Added.", Toast.LENGTH_LONG).show();
 

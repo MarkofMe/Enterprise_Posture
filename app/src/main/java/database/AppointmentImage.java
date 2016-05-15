@@ -13,25 +13,18 @@ import java.io.ByteArrayOutputStream;
 public class AppointmentImage {
 
     private int appointmentNo;
-    private byte[] image;
+    private Bitmap image;
     private String points;
 
-    AppointmentImage(int appoint, byte[] i, String points) {
-        appointmentNo = appoint;
+
+    public AppointmentImage(int appNumb, Bitmap i, String points) {
+        appointmentNo = appNumb;
         image = i;
         this.points = points;
     }
 
-    AppointmentImage(int appoint, Bitmap i, String points) {
-        appointmentNo = appoint;
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        i.compress(Bitmap.CompressFormat.JPEG, 70, stream);
-        image = stream.toByteArray();
-        this.points = points;
-    }
-
     public Bitmap getBitImage() {
-        return BitmapFactory.decodeByteArray(image,0, image.length);
+        return image;
     }
 
     public int getAppointmentNo() {
@@ -39,7 +32,10 @@ public class AppointmentImage {
     }
 
     public byte[] getImage() {
-        return image;
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
     }
 
     public String getPoints() {

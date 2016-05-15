@@ -16,6 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import database.DatabaseHandler;
 
 import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
 
@@ -38,7 +41,7 @@ public class PlotterActivity extends AppCompatActivity {
 
         root = (ViewGroup) findViewById(R.id.rootXML);  // view of id "rootXML", which is the "relativeLayout" reference id.
         clickMarker = new ArrayList<>(); // arrayList to store new image, views, which will be markers to go over top of photograph when touched.
-        markerPositions = new ArrayList<>(); // arrayList which stores X, Y value of a point. This is used to store the locations of all points in this Image.
+        markerPositions = new ArrayList<>(); // arrayList which stores X, Y value of a point. This is used to store the locations of all points2 in this Image.
 
 
         ImageHolder = (ImageView) findViewById(R.id.ImageHolder);
@@ -95,7 +98,7 @@ public class PlotterActivity extends AppCompatActivity {
         switch (v.getId()) {
             case R.id.undo_button:
 
-                // if arrayList is not null and not empty, as well as markerPositions being instantiated and not being empty (i.e points added to this collection, also from onTouchEvent method.
+                // if arrayList is not null and not empty, as well as markerPositions being instantiated and not being empty (i.e points2 added to this collection, also from onTouchEvent method.
                 if ((clickMarker != null && !clickMarker.isEmpty()) && (markerPositions != null && !clickMarker.isEmpty())) {
                     // deleting marker from screen view and arrayList.
                     ImageView delThisMarker = clickMarker.get((clickMarker.size() - 1));    // get the last in the list (i.e the current most recent marker).
@@ -111,8 +114,17 @@ public class PlotterActivity extends AppCompatActivity {
             case R.id.submit_button:
 
 
-                Log.d("Marker positions", markerPositions.toString());
+                //send the points2 between activities.
+                Point[] pointArray = new Point[markerPositions.size()];
+                pointArray = markerPositions.toArray(pointArray);
+
+                String[] points = new String[markerPositions.size()];
+                for (int i = 0; i < points.length;i++) {
+                    points[i] = pointArray[i].x + "," + pointArray[i].y;
+                }
+
                 Intent intent = new Intent(this, DeciderActivity.class);
+                intent.putExtra("Points array", points);
                 intent.putExtra("CameraImage", photo);
                 startActivity(intent);
 

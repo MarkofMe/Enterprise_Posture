@@ -11,7 +11,6 @@ public class Appointment {
     private int PatientID; // Foreign key
     private int AppointmentNo;
     private String AppointmentDate;
-    private Bitmap PatientImage;
     private String Diagnostic;
 
     //Constructors
@@ -19,11 +18,10 @@ public class Appointment {
 
     }
 
-    public Appointment(int patientID, int appointmentNo, Date appointmentDate, Bitmap patientImage, String diagnostic) {
+    public Appointment(int patientID, int appointmentNo, Date appointmentDate, String diagnostic) {
         this.PatientID = patientID;
         this.AppointmentNo = appointmentNo;
         this.AppointmentDate = setDate(appointmentDate);
-        this.PatientImage = patientImage;
         this.Diagnostic = diagnostic;
     }
 
@@ -54,14 +52,6 @@ public class Appointment {
 
     public void setAppointmentDate(Date appointmentDate) {
         AppointmentDate = setDate(appointmentDate);
-    }
-
-    public Bitmap getPatientImage() {
-        return PatientImage;
-    }
-
-    public void setPatientImage(Bitmap patientImage) {
-        PatientImage = patientImage;
     }
 
     public String getDiagnostic() {

@@ -41,6 +41,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
     Button btn;
 
     Bitmap photo = null;
+    String[] points = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
         setSupportActionBar(toolbar);
 
         Intent intent = getIntent();
+        points = intent.getStringArrayExtra("Points array");
         Bitmap bitmap = intent.getParcelableExtra("CameraImage");
         photo = bitmap;
 
@@ -124,6 +126,7 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
 
         Bundle extras = new Bundle();
         extras.putByteArray("CameraImage", bs.toByteArray());
+        intent.putExtra("Points array", points);
         extras.putInt("patientID", patientID);
         intent.putExtras(extras);
         startActivity(intent);

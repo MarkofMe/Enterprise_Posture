@@ -16,6 +16,7 @@ public class DeciderActivity extends AppCompatActivity {
 
 
     Bitmap photo = null;
+    String[] points = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class DeciderActivity extends AppCompatActivity {
         ImageHolder.setImageBitmap(bitmap);
         photo = bitmap;
 
+        points = intent.getStringArrayExtra("Points array");
         Toolbar toolbar = (Toolbar) findViewById(decider_toolbar);
         setSupportActionBar(toolbar);
 
@@ -41,6 +43,7 @@ public class DeciderActivity extends AppCompatActivity {
 
     public void AddToNewPatient(View view) {
         Intent intent = new Intent(this, DeciderCreatePatientActivity.class);
+        intent.putExtra("Points array", points);
         intent.putExtra("CameraImage", photo);
         startActivity(intent);
 
@@ -48,6 +51,7 @@ public class DeciderActivity extends AppCompatActivity {
 
     public void AddToExistingPatient(View view) {
         Intent intent = new Intent(this, DeciderAddToPatientActivity.class);
+        intent.putExtra("Points array", points);
         intent.putExtra("CameraImage", photo);
         startActivity(intent);
     }

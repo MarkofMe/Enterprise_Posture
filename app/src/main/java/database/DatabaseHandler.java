@@ -3,6 +3,7 @@ package database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
@@ -83,8 +84,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + " INTEGER NOT NULL, "
                 + AP_APPOINTMENTNO
                 + " INTEGER NOT NULL, "
-                + AP_PATIENTIMAGE
-                + " BLOB, "
                 + AP_APPOINTMENTDATE
                 + " TEXT NOT NULL, "
                 + AP_DIAGNOSTIC
@@ -106,9 +105,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Converts input int array into a string, to be used for storage of plotter points in the db.
-    public String intToString(int[] ints) {
+    public String StringArrayToString(String[] points) {
         StringBuilder builder = new StringBuilder();
-        for (int i : ints) {
+        for (String i : points) {
             if (builder.length() > 0) builder.append(",");
             builder.append("'").append(i).append("'");
         }
@@ -220,11 +219,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate())); // because its a date variable
         //Add photo to db
-        Bitmap photo = appointment.getPatientImage();
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        photo.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] bArray = bos.toByteArray();
-        values.put(AP_PATIENTIMAGE, bArray);
         //
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
         SQLiteDatabase db = this.getWritableDatabase();
@@ -270,7 +264,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(AP_PATIENTID, appointment.getPatientID());
         values.put(AP_APPOINTMENTNO, appointment.getAppointmentNo());
         values.put(AP_APPOINTMENTDATE, String.valueOf(appointment.getAppointmentDate()));
-        values.put(AP_PATIENTIMAGE, String.valueOf(appointment.getPatientImage()));
         values.put(AP_DIAGNOSTIC, appointment.getDiagnostic());
         SQLiteDatabase db = this.getWritableDatabase();
         db.update(Table_Patients, values, "_id = ?", new String[]{id});//queries by finding the field based on id

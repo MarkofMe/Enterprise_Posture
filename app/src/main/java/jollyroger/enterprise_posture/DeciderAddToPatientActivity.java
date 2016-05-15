@@ -65,8 +65,10 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
                 Intent intent = getIntent();
                 Bitmap bitmap = intent.getParcelableExtra("CameraImage");
+                String[] points = intent.getStringArrayExtra("Points array");
 
                 Intent nextIntent = new Intent(getBaseContext(), DeciderCreateAppointmentActivity.class);
+                nextIntent.putExtra("Points array", points);
                 Bundle extras = new Bundle();
                 extras.putInt("patientID", s.getInt(0));
                 ByteArrayOutputStream bs = new ByteArrayOutputStream();
