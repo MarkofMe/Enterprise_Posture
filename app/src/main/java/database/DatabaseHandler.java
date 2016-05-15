@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class DatabaseHandler extends SQLiteOpenHelper {
@@ -139,11 +140,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Appointment WHERE patientID=" + id, null);
     }
 
-//    public int getNextID(){
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor c = db.rawQuery("SELECT COUNT(_id) FROM Patients", null);
-//        return c.getCount();
-//    }
+    public int getNextID(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM Patients", null);
+        return c.getCount();
+    }
 
     public boolean insertDataImage(AppointmentImage image) {
         ContentValues values = new ContentValues();

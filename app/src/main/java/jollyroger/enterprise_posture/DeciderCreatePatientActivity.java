@@ -115,16 +115,16 @@ public class DeciderCreatePatientActivity extends AppCompatActivity implements A
 
         //If both the fore and sur name fields contain text. (currently only needs text, doesnt need actual names i.e can have only spaces/punctuation.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
-            dbHandler.insertDataPatients(new Patient(patientID, firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
+            dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(), new Date(year_x - 1900, month_x, day_x), gender.getSelectedItem().toString(), 1));
+            patientID = dbHandler.getNextID();
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
         }
-        Log.d("ID: ", "" + patientID);
 
         Intent intent = new Intent(this, DeciderCreateAppointmentActivity.class);
         ByteArrayOutputStream bs = new ByteArrayOutputStream();
-        //photo.compress(Bitmap.CompressFormat.PNG, 50, bs);
+        photo.compress(Bitmap.CompressFormat.PNG, 50, bs);
 
         Bundle extras = new Bundle();
         extras.putByteArray("CameraImage", bs.toByteArray());
