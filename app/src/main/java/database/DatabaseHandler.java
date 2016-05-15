@@ -124,7 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldNum, int newNum) {
         //Drop older table if exists and create fresh
-        db.execSQL("Drop table if exists " + Table_Patients);
+        db.execSQL("DROP TABLE IF EXISTS " + Table_Patients);
         db.execSQL("DROP TABLE IF EXISTS " + Table_Appointments);
         onCreate(db);
     }
@@ -136,7 +136,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     public Cursor getPatientAppointments(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM Appointments WHERE patientID=" + id, null);
+        return db.rawQuery("SELECT * FROM Appointment WHERE patientID=" + id, null);
     }
 
 //    public int getNextID(){
