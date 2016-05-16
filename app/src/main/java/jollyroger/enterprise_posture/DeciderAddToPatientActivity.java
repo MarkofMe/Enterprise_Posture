@@ -97,6 +97,9 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.equals("")) {
+                    this.onQueryTextSubmit("");
+                }
                 return true;
             }
         });

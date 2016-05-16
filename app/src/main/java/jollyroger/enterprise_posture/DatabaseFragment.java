@@ -110,6 +110,9 @@ public class DatabaseFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                if (newText.equals("")) {
+                    this.onQueryTextSubmit("");
+                }
                 return true;
             }
         });
