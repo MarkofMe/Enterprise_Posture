@@ -94,6 +94,7 @@ public class DeciderAddToPatientActivity extends AppCompatActivity {
                 search.clearFocus();
                 return true;
             }
+
             @Override
             public boolean onQueryTextChange(String newText) {
                 return true;
