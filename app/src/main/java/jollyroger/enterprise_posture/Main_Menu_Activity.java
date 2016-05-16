@@ -30,6 +30,7 @@ import static jollyroger.enterprise_posture.R.layout.activity_main_menu;
 
 public class Main_Menu_Activity extends AppCompatActivity {
 
+    String colour = "BLUE";
     private ViewPager mPager;
     private SlidingTabLayout mTabs;
     ImageView imageView;
@@ -148,20 +149,26 @@ public class Main_Menu_Activity extends AppCompatActivity {
     public void ChangeToBlue(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_bg));
+        colour = "BLUE";
     }
 
     public void ChangeToPink(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_pink));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_pink));
+        colour = "PINK";
     }
 
     public void ChangeToOrange(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_orange));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_orange));
+        colour = "ORANGE";
     }
 
     public void TakePicture(View view) {
-        startActivity(new Intent(this, PlotterActivity.class));
+        Intent intent = new Intent(this, PlotterActivity.class);
+        intent.putExtra("Colour", colour);
+        startActivity(intent);
+
     }
 
 

@@ -21,6 +21,7 @@ import static jollyroger.enterprise_posture.R.id.plotter_toolbar;
 
 public class PlotterActivity extends AppCompatActivity {
 
+    String colour;
     ViewGroup root; // to soon be view of id "rootXML", which is the "relativeLayout" reference id.
     ArrayList<ImageView> clickMarker;   // stores collection of markers.
     ArrayList<Point> markerPositions;   // stores the X and Y of the pointers.
@@ -39,20 +40,6 @@ public class PlotterActivity extends AppCompatActivity {
         clickMarker = new ArrayList<>(); // arrayList to store new image, views, which will be markers to go over top of photograph when touched.
         markerPositions = new ArrayList<>(); // arrayList which stores X, Y value of a point. This is used to store the locations of all points in this Image.
 
-
-        //Intent i = getIntent();
-
-        //photo = new ImageView(this);
-        //photo.setImageBitmap(BitmapFactory.decodeFile(i.getStringExtra(Main_Menu_Activity.path)));
-//        Bundle extras = getIntent().getExtras();    // get the bitmap of image from CameraActivity.
-//        Bitmap bmp = (Bitmap) extras.getParcelable("Bitmap");   // setting bitmap stored in parcel to new bitmap variable.
-//        //photo = null; // ? needed ? //
-//        photo.setImageBitmap(bmp);  // setting the image stored in bitmap to the imageview here.
-
-        //RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        //photo.setLayoutParams(lp);  // ?
-        //root.addView(photo);
-        //root.addView(photo, lp);
 
         ImageHolder = (ImageView) findViewById(R.id.ImageHolder);
 
