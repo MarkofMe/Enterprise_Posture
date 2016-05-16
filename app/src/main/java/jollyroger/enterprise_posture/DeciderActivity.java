@@ -14,7 +14,8 @@ import static jollyroger.enterprise_posture.R.id.decider_toolbar;
 
 public class DeciderActivity extends AppCompatActivity {
 
-    //This activity is used when the
+    //This activity is used when a picture has been taken, the user makes the decision to either
+    //Add the photo to an already existing patient or to create a new patient to add it to.
     Bitmap photo = null;
     String[] points = null;
 
