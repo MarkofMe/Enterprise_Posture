@@ -31,6 +31,7 @@ public class AppointmentImage {
         return appointmentNo;
     }
 
+    //Converts bitmap image into byte array for storing in the database.
     public byte[] getImage() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.PNG, 100, stream);

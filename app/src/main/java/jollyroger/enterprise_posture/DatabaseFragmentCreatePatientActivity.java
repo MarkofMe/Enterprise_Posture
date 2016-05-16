@@ -58,7 +58,6 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         String[] items = new String[]{"Male", "Female", "Other", "Not specified"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
-
     }
 
     public void showDialogOnButtonClick() {
@@ -104,6 +103,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
         EditText lastName = (EditText) findViewById(R.id.lastNameInput);
         Spinner gender = (Spinner) findViewById(R.id.genderSpinner);
 
+        //If the fields are filled in, add the patient to the db.
         if (!firstName.getText().toString().matches("") && !lastName.getText().toString().matches("")) {
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 1));

@@ -18,7 +18,7 @@ public class Patient implements Parcelable {
     private String Gender;
     private Integer Active;
 
-    //Constructor
+    //Constructors
     public Patient() {
 
     }

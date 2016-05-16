@@ -33,25 +33,21 @@ public class ViewPatientListviewCursorAdapter extends CursorAdapter {
 
     @Override
     public void bindView(View view, Context context, Cursor c) {
-
+        //Get view objects from the layout.
         TextView appointmentNumber = (TextView) view.findViewById(R.id.viewAppointmentNumber);
         TextView appointmentDate = (TextView) view.findViewById(R.id.viewAppointmentDate);
         TextView postureResult = (TextView) view.findViewById(R.id.viewPostureResult);
         ImageView appointment_Imageholder = (ImageView) view.findViewById(R.id.viewAppointment_imageholder);
 
-        //Log.d("ViewAppointemntActivity", (DatabaseUtils.dumpCursorToString(c)));
-
+        //set view objects text values
         int appointNumb = c.getInt(c.getColumnIndexOrThrow("AppointmentNo"));
         appointmentNumber.setText(appointNumb + "");
         appointmentDate.setText(c.getString(c.getColumnIndexOrThrow("AppointmentDate")));
         postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
 
-
-        Log.d("1", appointNumb + "");
+        //Set the image.
         DatabaseHandler db = new DatabaseHandler(context);
         Cursor image = db.getAppointmentImages(appointNumb);
-        Log.d("2", DatabaseUtils.dumpCursorToString(image));
-
         image.moveToFirst();
         byte[] b = image.getBlob(image.getColumnIndex("Image"));
         Bitmap img = BitmapFactory.decodeByteArray(b, 0, b.length);
