@@ -74,8 +74,8 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
 
         //Take dob from DB and convert for the date spinner
         String d = p.getDoB();
-        day_x = Integer.parseInt(d.substring(0,2));
-        month_x = Integer.parseInt(d.substring(3,5));
+        day_x = Integer.parseInt(d.substring(0, 2));
+        month_x = Integer.parseInt(d.substring(3, 5));
         year_x = Integer.parseInt(d.substring(6));
 
         txtDob.setText(p.getDoB());
@@ -146,7 +146,7 @@ public class UpdatePatientActivity extends AppCompatActivity implements AdapterV
             dbHandler.updatePatients(new Patient(patientId, firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 1));
 
-            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText()+ " Updated.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText() + " Updated.", Toast.LENGTH_SHORT).show();
 
             startActivity(new Intent(this, Main_Menu_Activity.class));
         } else { //One of the fields was blank.

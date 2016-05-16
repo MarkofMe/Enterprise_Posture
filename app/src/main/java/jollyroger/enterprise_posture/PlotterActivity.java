@@ -119,7 +119,7 @@ public class PlotterActivity extends AppCompatActivity {
                 pointArray = markerPositions.toArray(pointArray);
 
                 String[] points = new String[markerPositions.size()];
-                for (int i = 0; i < points.length;i++) {
+                for (int i = 0; i < points.length; i++) {
                     points[i] = pointArray[i].x + "," + pointArray[i].y;
                 }
 

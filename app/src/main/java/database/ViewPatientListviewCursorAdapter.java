@@ -47,7 +47,7 @@ public class ViewPatientListviewCursorAdapter extends CursorAdapter {
         postureResult.setText(c.getString(c.getColumnIndexOrThrow("Diagnostic")));
 
 
-        Log.d("1" , appointNumb + "");
+        Log.d("1", appointNumb + "");
         DatabaseHandler db = new DatabaseHandler(context);
         Cursor image = db.getAppointmentImages(appointNumb);
         Log.d("2", DatabaseUtils.dumpCursorToString(image));

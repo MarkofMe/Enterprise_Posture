@@ -134,13 +134,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM Appointment WHERE patientID=" + id, null);
     }
 
-    public int getNextPatientID(){
+    public int getNextPatientID() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Patients", null);
         return c.getCount();
     }
 
-    public int getNextAppointmentID(){
+    public int getNextAppointmentID() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM Appointment", null);
         return c.getCount();
@@ -160,8 +160,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" , null);
 
         //Returns any that match to firstname, surname or combined.
-        Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%"+name+"%'" +
-                "OR " + PT_SURNAME + " LIKE '%"+name+"%'" + "OR " + PT_FIRSTNAME + "||" + PT_SURNAME + " LIKE '%"+name+"%'" , null);
+        Cursor c = db.rawQuery("SELECT * FROM Patients WHERE " + PT_FIRSTNAME + " LIKE '%" + name + "%'" +
+                "OR " + PT_SURNAME + " LIKE '%" + name + "%'" + "OR " + PT_FIRSTNAME + "||" + PT_SURNAME + " LIKE '%" + name + "%'", null);
         return c;
     }
 
