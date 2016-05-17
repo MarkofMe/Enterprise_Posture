@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <include
-            android:id="@+id/create_patient_toolbar"
-            layout="@layout/app_bar" />
-
-
-    </android.support.design.widget.AppBarLayout>
+    <include
+        android:id="@+id/create_patient_toolbar"
+        layout="@layout/app_bar" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -25,7 +17,6 @@
 
 
         <TextView
-            android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -34,7 +25,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/firstNameInput"
+            android:id="@+id/deciderfirstNameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
@@ -51,34 +42,59 @@
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <EditText
-            android:id="@+id/lastNameInput"
+            android:id="@+id/deciderlastNameInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="100dp"
             android:layout_marginTop="98dp"
             android:ems="10"
-            android:inputType="textPersonName"/>
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/deciderDOB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="170dp"
+            android:text="Date of Birth: "
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
         <Button
+            android:id="@+id/decideraddPatientDOB"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="158dp"
+            android:layout_marginTop="200dp"
             android:background="@color/my_blue"
-            android:onClick="AddDate"
-            android:text="Add Date"
-            android:id="@+id/button" />
+            android:textColor="@color/textColour"
+            android:text="Add Date Of Birth" />
 
+        <TextView
+            android:id="@+id/txtViewGender"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/addPatientDOB"
+            android:layout_centerVertical="true"
+            android:text="Gender:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
 
+        <Spinner
+            android:id="@+id/decidergenderSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/lastNameInput"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtViewGender" />
 
     </RelativeLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
         android:background="@color/my_blue"
-        android:onClick="Add"
+        android:textColor="@color/textColour"
+        android:onClick="AddDeciderPatient"
         android:text="@string/add_patient" />
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

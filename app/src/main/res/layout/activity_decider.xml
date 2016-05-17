@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <include
-            android:id="@+id/decider_toolbar"
-            layout="@layout/app_bar" />
-
-
-    </android.support.design.widget.AppBarLayout>
+    <include
+        android:id="@+id/decider_toolbar"
+        layout="@layout/app_bar" />
 
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,31 +19,44 @@
             android:layout_height="wrap_content"
             android:text="@string/take_another_picture"
             android:id="@+id/take_another"
+            android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:onClick="TakeAnotherPicture"
-            android:layout_marginTop="200dp" />
+            android:layout_marginTop="60dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_to_new_patient"
             android:id="@+id/add_new"
+            android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:onClick="AddToNewPatient"
-            android:layout_marginTop="300dp" />
+            android:layout_marginTop="110dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/add_to_existing_patient"
             android:id="@+id/add_to"
+            android:background="@color/my_blue"
+            android:textColor="@color/textColour"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:onClick="AddToExistingPatient"
-            android:layout_marginTop="400dp" />
+            android:layout_marginTop="160dp" />
+
+        <ImageView
+            android:id="@+id/decider_imageholder"
+            android:layout_width="300dp"
+            android:layout_height="360dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true" />
     </RelativeLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

@@ -1,15 +1,16 @@
 package database;
 
+import android.graphics.Bitmap;
 import android.media.Image;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Appointment {
     private int AppointmentID; // Primary Key
     private int PatientID; // Foreign key
     private int AppointmentNo;
-    private Date AppointmentDate;
-    private Image PatientImage;
+    private String AppointmentDate;
     private String Diagnostic;
 
     //Constructors
@@ -17,21 +18,17 @@ public class Appointment {
 
     }
 
-    public Appointment(int appointmentID, int patientID, int appointmentNo, Date appointmentDate, Image patientImage, String diagnostic) {
-        this.AppointmentID = appointmentID;
+    public Appointment(int patientID, int appointmentNo, Date appointmentDate, String diagnostic) {
         this.PatientID = patientID;
         this.AppointmentNo = appointmentNo;
-        this.AppointmentDate = appointmentDate;
-        this.PatientImage = patientImage;
+        this.AppointmentDate = setDate(appointmentDate);
         this.Diagnostic = diagnostic;
     }
 
-    public int getAppointmentID() {
-        return AppointmentID;
-    }
-
-    public void setAppointmentID(int appointmentID) {
-        AppointmentID = appointmentID;
+    //Standardises the input date.
+    private String setDate(Date d) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(d);
     }
 
     public int getPatientID() {
@@ -50,20 +47,12 @@ public class Appointment {
         AppointmentNo = appointmentNo;
     }
 
-    public Date getAppointmentDate() {
+    public String getAppointmentDate() {
         return AppointmentDate;
     }
 
     public void setAppointmentDate(Date appointmentDate) {
-        AppointmentDate = appointmentDate;
-    }
-
-    public Image getPatientImage() {
-        return PatientImage;
-    }
-
-    public void setPatientImage(Image patientImage) {
-        PatientImage = patientImage;
+        AppointmentDate = setDate(appointmentDate);
     }
 
     public String getDiagnostic() {

@@ -1,6 +1,7 @@
 package jollyroger.enterprise_posture;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import java.io.File;
 
 import tabs.SlidingTabLayout;
 
@@ -26,20 +30,19 @@ import static jollyroger.enterprise_posture.R.layout.activity_main_menu;
 
 public class Main_Menu_Activity extends AppCompatActivity {
 
+    String colour = "BLUE";
     private ViewPager mPager;
     private SlidingTabLayout mTabs;
+    ImageView imageView;
+    static final int CAM_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(activity_main_menu);
         Toolbar toolbar = (Toolbar) findViewById(main_menu_toolbar);
         setSupportActionBar(toolbar);
-
-
-        //NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
-        //        getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
-        //drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar);
 
 
         mPager = (ViewPager) findViewById(R.id.pager);
@@ -146,25 +149,30 @@ public class Main_Menu_Activity extends AppCompatActivity {
     public void ChangeToBlue(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.colorPrimary));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_bg));
+        colour = "BLUE";
     }
 
     public void ChangeToPink(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_pink));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_pink));
+        colour = "PINK";
     }
 
     public void ChangeToOrange(View view) {
         findViewById(R.id.main_menu_toolbar).setBackgroundColor(getResources().getColor(R.color.my_orange));
         findViewById(R.id.tabContainer).setBackground(getResources().getDrawable(R.drawable.custom_orange));
+        colour = "ORANGE";
     }
 
-    public void OpenCamera(View view) {
-        startActivity(new Intent(this, CameraActivity.class));
+    public void TakePicture(View view) {
+        Intent intent = new Intent(this, PlotterActivity.class);
+        intent.putExtra("Colour", colour);
+        startActivity(intent);
+
     }
+
 
     public void AddNewPatient(View view) {
-        startActivity(new Intent(this, CreatePatientActivity.class));
+        startActivity(new Intent(this, DatabaseFragmentCreatePatientActivity.class));
     }
-
-
 }

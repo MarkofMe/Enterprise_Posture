@@ -7,4 +7,5 @@
     <color name="my_pink">#ff8af0</color>
     <color name="my_orange">#ff9600</color>
     <color name="colorHighlight">#B6B6B6</color>
+    <color name="textColour">#FFFFFF</color>
 </resources>

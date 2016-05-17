@@ -10,11 +10,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top"
+        android:layout_marginTop="250dp"
+        android:background="@color/my_blue"
         android:gravity="center"
-        android:text="@string/open_camera"
-        android:onClick="OpenCamera"
+        android:onClick="TakePicture"
+        android:text="@string/take_picture"
+        android:textColor="@color/textColour"
         android:textAppearance="?android:textAppearanceLarge" />
-
 
 </FrameLayout>

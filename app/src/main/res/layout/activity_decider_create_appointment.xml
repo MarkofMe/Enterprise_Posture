@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".DeciderCreateAppointmentActivity">
+
+
+    <include
+        android:id="@+id/decider_toolbar"
+        layout="@layout/app_bar" />
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="68dp"
+            android:text="Appointment Number: "
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/goodOrBad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="108dp"
+            android:text="Good or Bad Posture:"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Spinner
+            android:id="@+id/goodOrBadSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="138dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/txtViewGender" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment id"
+            android:id="@+id/appointmentNumber"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/createAppointmentImageview"
+            android:layout_below="@+id/goodOrBadSpinner"
+            android:layout_alignStart="@+id/goodOrBadSpinner" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/my_blue"
+        android:onClick="AddAppointment"
+        android:textColor="@color/textColour"
+        android:text="@string/add_appointment" />
+
+</RelativeLayout>

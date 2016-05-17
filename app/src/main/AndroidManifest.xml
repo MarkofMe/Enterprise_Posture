@@ -2,17 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jollyroger.enterprise_posture">
 
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permisson.CAMERA" />
+
     <application
         android:allowBackup="true"
-        android:debuggable="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:screenOrientation="portrait"
+        android:configChanges="keyboardHidden|orientation|screenSize">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,37 +28,99 @@
         </activity>
         <activity
             android:name=".Main_Menu_Activity"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="Camera">
+            android:label="Camera"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
         </activity>
         <activity
-            android:name=".CreatePatientActivity"
-            android:label="Create Patient">
+            android:name=".DatabaseFragmentCreatePatientActivity"
+            android:label="Create Patient"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".PlotterActivity"
+            android:label="Plot Points"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".DeciderActivity"
+            android:label="Add or Create"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".PlotterActivity" />
+        </activity>
+        <activity
+            android:name=".DeciderAddToPatientActivity"
+            android:label="Add"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DeciderActivity" />
+        </activity>
+        <activity
+            android:name=".DeciderCreatePatientActivity"
+            android:label="Create"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DeciderActivity" />
+        </activity>
+        <activity
+            android:name=".DeciderCreateAppointmentActivity"
+            android:label="Create Appointment"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DeciderActivity" />
+        </activity>
+        <activity
+            android:name=".ViewPatientActivity"
+            android:label="Patient Profile"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main_Menu_Activity" />
+        </activity>
+        <activity
+            android:name=".UpdatePatientActivity"
+            android:label="Edit Patient"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewPatientActivity" />
+        </activity>
+        <activity
+            android:name=".ViewAppointmentActivity"
+            android:label="View Appointment"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ViewPatientActivity" />
         </activity>
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
+        <meta-data android:name="com.google.android.gms.version" />
 
-        <activity android:name=".PlotterActivity" />
-        <activity android:name=".DeciderActivity" />
-        <activity android:name=".AddToPatientActivity" />
     </application>
 
 </manifest>
