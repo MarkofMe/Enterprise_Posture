@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -108,6 +109,7 @@ public class DatabaseFragmentCreatePatientActivity extends AppCompatActivity imp
             dbHandler.insertDataPatients(new Patient(firstName.getText().toString(), lastName.getText().toString(),
                     new Date(year_x - 1900, month_x - 1, day_x), gender.getSelectedItem().toString(), 1));
             Toast.makeText(this, "Patient " + firstName.getText() + " " + lastName.getText() + " Added.", Toast.LENGTH_SHORT).show();
+            Log.d("Crap", "C");
             finish();
         } else { //One of the fields was blank.
             Toast.makeText(this, "You did not enter your name", Toast.LENGTH_SHORT).show();
